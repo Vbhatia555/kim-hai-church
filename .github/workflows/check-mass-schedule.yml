@@ -1,0 +1,65 @@
+name: Update Mass schedule and publish virtual church
+
+on:
+  schedule:
+    # 07:17 and 19:17 Vietnam time (UTC+7)
+    - cron: '17 0,12 * * *'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: kimhai-github-pages
+  cancel-in-progress: false
+
+jobs:
+  update-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+      - name: Install Python
+        if: github.event_name != 'push'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install parser packages
+        if: github.event_name != 'push'
+        run: python -m pip install --disable-pip-version-check 'requests>=2.31,<3' 'beautifulsoup4>=4.12,<5'
+      - name: Check official Kim Hai Mass schedule
+        if: github.event_name != 'push'
+        run: python update_mass_schedule.py
+      - name: Save new verified schedule
+        if: github.event_name != 'push'
+        run: |
+          if git diff --quiet -- mass-schedule.json; then
+            echo 'No file change.'
+          else
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add mass-schedule.json
+            git commit -m 'chore: verify Kim Hai Mass schedule'
+            git push
+          fi
+      - name: Prepare public site
+        run: |
+          mkdir -p public
+          cp index.html mass-schedule.json public/
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4
