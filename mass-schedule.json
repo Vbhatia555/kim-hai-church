@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "parish": "Giáo xứ Kim Hải",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "source_url": "https://www.giaophanbaria.org/gioi-thieu/cac-giao-hat/giao-hat-long-huong/2012/12/05/giao-xu-kim-hai.html",
+  "source_type": "published_regular_parish_schedule",
+  "last_checked_at": null,
+  "last_schedule_change_detected_at": null,
+  "weekly": {
+    "0": [
+      270,
+      420,
+      1020
+    ],
+    "1": [
+      270
+    ],
+    "2": [
+      270
+    ],
+    "3": [
+      270
+    ],
+    "4": [
+      270,
+      1070
+    ],
+    "5": [
+      270
+    ],
+    "6": [
+      270,
+      1065
+    ]
+  },
+  "special_date_overrides_supported": false,
+  "notice_en": "Official listing contains regular times only; special holidays and last-minute changes may not appear.",
+  "notice_vi": "Nguồn chính thức chỉ có lịch lễ thường lệ; ngày lễ đặc biệt và thay đổi đột xuất có thể không được đăng."
+}
