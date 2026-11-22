@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#162c35">
+<meta name="description" content="Một góc cầu nguyện dành cho Thảo và Varun — nhà thờ ảo lấy cảm hứng từ Giáo xứ Kim Hải, với giờ lễ Việt Nam, lời kinh và hai người luôn bên nhau.">
+<title>Nhà thờ Kim Hải • Cùng nhau cầu nguyện</title>
+<style>
+:root{--night:#14242b;--deep:#172e36;--cream:#f7f0df;--cream2:#e6ddc6;--gold:#ddb87b;--gold2:#ac7548;--text:#f8f3e9;--muted:#c7d0c9;--line:rgba(255,249,228,.19);--glass:rgba(18,40,48,.74);--shadow:0 18px 80px rgba(0,0,0,.3)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#31515b,transparent 54%),linear-gradient(#1f3b44,#0e232e);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid #e6c78e;outline-offset:3px}a{color:#f6d8a4}a:hover{text-decoration:none}button:disabled{cursor:default;opacity:.6}
+#wrapper{max-width:1480px;margin:auto;min-height:100vh;position:relative}header{display:flex;align-items:center;justify-content:space-between;padding:16px clamp(16px,4vw,50px) 10px;gap:14px;position:relative;z-index:20}.brand{display:flex;align-items:center;gap:13px;min-width:0;text-decoration:none;color:var(--text)}.emblem{height:45px;width:45px;flex-shrink:0;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,rgba(245,210,157,.22),rgba(245,210,157,.04));border:1px solid #efcc8b69;color:#f7ce89;font-size:22px}.brand strong{display:block;font-family:Georgia,serif;letter-spacing:.02em;font-size:19px}.brand span{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#cfdbd3;margin-top:4px}.header-right{display:flex;align-items:center;gap:10px}.lang-toggle{display:flex;border:1px solid var(--line);border-radius:99px;background:#0b2027a8;padding:4px}.lang-toggle button{border:0;color:#d6ddd8;padding:8px 12px;background:transparent;border-radius:99px;font-size:12px;font-weight:800;letter-spacing:.06em}.lang-toggle button[aria-pressed="true"]{background:#efd29f;color:#2e3b39}.icon-btn{height:38px;width:38px;display:grid;place-items:center;border-radius:50%;background:#0821296e;border:1px solid var(--line);color:#f8e5c9;font-size:18px}.timechip{border:1px solid var(--line);border-radius:999px;padding:9px 13px;color:#f5e9d6;background:#09212ab8;display:flex;gap:8px;align-items:center;white-space:nowrap;font-size:12px;font-weight:650}.timechip b{font-variant-numeric:tabular-nums;font-size:14px}
+.intro{text-align:center;margin:6px 18px 14px}.eyebrow{letter-spacing:.24em;text-transform:uppercase;color:#e5c997;font-size:11px;font-weight:700}.intro h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(25px,3.5vw,44px);letter-spacing:.01em;margin:7px 0 7px}.intro p{max-width:700px;margin:0 auto;color:#c7d1cd;font-family:Georgia,serif;font-size:clamp(13px,1.35vw,17px);line-height:1.5}
+.scene-wrap{position:relative;margin:0 clamp(10px,3vw,44px);overflow:hidden;border-radius:28px;border:1px solid #f8e1b14d;background:#263d44;box-shadow:var(--shadow)}.scene-wrap::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 140px rgba(23,37,43,.22);pointer-events:none;border-radius:inherit}.scene-svg{width:100%;height:clamp(410px,57vw,625px);display:block}.scene-svg svg{width:100%;height:100%;display:block}.svg-scene{transition:opacity .65s ease;pointer-events:none}.svg-scene.hidden{opacity:0;visibility:hidden}.svg-scene.active{opacity:1;pointer-events:all;visibility:visible}.scene-svg .interactive{cursor:pointer}.scene-svg .interactive:focus{outline:none;filter:brightness(1.17)}.scene-svg .interactive:hover{filter:brightness(1.1)}.firefly{animation:blink 4s ease-in-out infinite alternate;transform-origin:center}.star{animation:blink 5s ease infinite alternate;transform-origin:center}.bell-swing{transform-origin:600px 165px;animation:bell 8s ease-in-out infinite}.sunray{animation:rayPulse 5s ease-in-out infinite alternate}.candleflame{transform-origin:center bottom;animation:flame .8s ease-in-out infinite alternate}.character{transform-box:fill-box;transform-origin:50% 95%;animation:charBob 2.9s ease-in-out infinite}.character.second{animation-delay:-1.1s}.avatar.sitting .character{animation:none;transform:translateY(9px) scaleY(.78)}.avatar.praying .character{animation:none;transform:translateY(13px) scaleY(.73) rotate(-5deg)}.avatar.praying .arm{transform:rotate(-20deg);transform-origin:center}
+.priest-figure .priest-vestments{transform-box:fill-box;transform-origin:50% 80%;animation:priestBreathe 4.4s ease-in-out infinite}
+.priest-figure .priest-blessing{transform-box:fill-box;transform-origin:15% 80%;animation:priestBlessing 9s ease-in-out infinite}
+.priest-figure .priest-blink{transform-box:fill-box;transform-origin:center;animation:priestBlink 6.5s linear infinite}
+@keyframes priestBreathe{0%,100%{transform:translateY(0) scaleX(1)}50%{transform:translateY(-1.5px) scaleX(1.018)}}
+@keyframes priestBlessing{0%,14%,78%,100%{transform:rotate(0deg)}30%,53%{transform:rotate(-17deg)}}
+@keyframes priestBlink{0%,45%,47%,100%{opacity:1}46%{opacity:.07}}
+.scene-pulse{animation:blink 3s infinite alternate}
+@keyframes charBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}@keyframes blink{0%{opacity:.32}100%{opacity:.97}}@keyframes flame{to{transform:scaleX(.8) rotate(7deg)}}@keyframes bell{0%,45%,52%,100%{transform:rotate(0deg)}48%{transform:rotate(7deg)}50%{transform:rotate(-6deg)}}@keyframes rayPulse{to{opacity:.43}}
+.scene-overlay{pointer-events:none;position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:22px;z-index:3}.scene-overlay>*{pointer-events:auto}.enter-prompt{background:#11262fcc;border:1px solid rgba(255,230,183,.36);border-radius:24px;padding:15px 20px 17px;text-align:center;backdrop-filter:blur(12px);box-shadow:0 10px 25px #0004;max-width:560px;width:100%;margin-bottom:4px}.enter-prompt strong{font-family:Georgia,serif;font-size:19px;display:block;font-weight:normal}.enter-prompt small{display:block;color:#d4d9cf;margin:6px 0 13px}.primary-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;background:#edcf96;color:#263338;border-radius:999px;font-weight:760;padding:12px 20px;transition:transform .2s,filter .2s;box-shadow:0 5px 15px #0002}.primary-btn:hover{filter:brightness(1.05);transform:translateY(-2px)}.back-btn{position:absolute;left:18px;top:18px;z-index:5;border:1px solid #ffefce59;background:#183138dd;color:white;backdrop-filter:blur(8px);padding:9px 15px;border-radius:99px;font-size:12px;display:none}.back-btn.show{display:block}.small-caption{position:absolute;left:22px;bottom:16px;pointer-events:none;font-size:11px;letter-spacing:.08em;color:#fff8eab6}.inside-actions{position:absolute;z-index:5;top:15px;right:15px;display:none;flex-direction:column;gap:8px}.inside-actions.show{display:flex}.float-action{border:1px solid #fff3d173;color:white;background:#193740e0;padding:9px 13px;border-radius:999px;box-shadow:0 6px 12px #0002;font-size:12px;text-align:center}.float-action:hover{background:#31545c}.scene-hint{position:absolute;z-index:5;bottom:12px;left:50%;transform:translateX(-50%);border:1px solid #fff2ce49;padding:8px 14px;border-radius:99px;background:#17333ab9;font-size:12px;text-align:center;color:#fff4dd;max-width:95%;width:max-content;display:none}.scene-hint.show{display:block}
+.dashboard{padding:17px clamp(12px,3vw,45px) 26px;display:grid;grid-template-columns:minmax(250px,.96fr) minmax(350px,1.3fr) minmax(270px,.95fr);gap:14px}.pane{background:linear-gradient(150deg,rgba(32,60,68,.87),rgba(12,35,44,.81));border:1px solid rgba(235,218,179,.19);border-radius:19px;padding:19px 18px;min-height:172px;box-shadow:0 6px 20px rgba(0,0,0,.09)}.pane h2{margin:0 0 11px;font-family:Georgia,serif;font-weight:400;color:#f6e1bd;font-size:21px}.pane p{line-height:1.5;color:#d2d8d1;margin:0;font-size:13px}.pane .label{letter-spacing:.14em;text-transform:uppercase;font-weight:750;font-size:10px;color:#b9cfc8;margin-bottom:6px}.big-time{font:30px Georgia,serif;margin:8px 0 5px;letter-spacing:.015em;color:#fff2da;min-height:38px}.status-dot{height:7px;width:7px;display:inline-block;background:#d5a96c;border-radius:100%;margin-right:5px;box-shadow:0 0 0 4px #e8c89515}.status-dot.live{background:#76c9a5;box-shadow:0 0 0 4px #76c9a51e;animation:blink 1s infinite alternate}.action-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.soft-btn{border:1px solid #eed6b65c;border-radius:99px;background:#ffebc012;color:#ffebce;padding:9px 13px;font-size:12px;font-weight:690}.soft-btn:hover{background:#f7d5a638}.soft-btn.accent{background:#e9ca8f;color:#233039;border-color:#e9ca8f}.schedule-compact{font-size:13px;color:#d2d9d4;line-height:1.7}.schedule-compact b{color:#f6d6a3}.heartline{font-family:Georgia,serif;font-size:18px!important;color:#f4d8b2!important;margin-bottom:11px!important}.insignia{color:#f4cfa0;font-size:13px}.page-footer{text-align:center;color:#b9c7c5;font-size:11px;line-height:1.9;padding:0 20px 35px}.page-footer a{color:#e7d3a8}.page-footer em{font-style:normal;color:#f1dbc2}
+.backdrop{position:fixed;inset:0;background:#04131bc9;z-index:50;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}.backdrop.show{opacity:1;visibility:visible}.drawer{position:fixed;right:0;top:0;bottom:0;z-index:51;background:linear-gradient(160deg,#f8f0dd,#e9e1d0);color:#334445;width:min(520px,100vw);box-shadow:-15px 0 60px #0008;overflow-y:auto;transform:translateX(103%);transition:transform .32s ease;padding:24px clamp(20px,4vw,34px) 40px}.drawer.show{transform:translateX(0)}.drawer-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px;padding-bottom:13px;border-bottom:1px solid #bfae9077}.drawer-head small{font-size:10px;font-weight:750;letter-spacing:.19em;color:#8a7557;text-transform:uppercase}.drawer-head h2{font:normal 29px Georgia,serif;margin:5px 0;color:#34433c}.drawer-close{background:#e2d4b8;border:0;color:#3d473e;border-radius:50%;font-size:22px;width:35px;height:35px;display:grid;place-items:center;flex-shrink:0}.drawer p,.drawer li{line-height:1.7}.drawer .desc{font-size:13px;color:#68756e;margin-bottom:14px}.prayer-list{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.pray-tab{padding:9px 12px;border-radius:99px;border:1px solid #bea980;background:transparent;color:#4d604f;font-size:12px}.pray-tab.active{background:#345a53;color:#fff;border-color:#345a53}.paper{background:#fffaf1;border:1px solid #e5d8bb;border-radius:16px;box-shadow:0 10px 20px #61523a11;padding:23px 20px}.paper h3{font:normal 25px Georgia,serif;margin:0 0 12px;color:#665239}.paper .prayer-body{font:18px/1.85 Georgia,serif;color:#40483e;white-space:pre-line}.paper .prayer-body::first-letter{font-size:25px}.paper .prayer-footnote{font-size:11px;color:#7f846e;margin-top:17px}.drawer .primary-btn{background:#315950;color:white;box-shadow:none}.drawer .action-row{margin-top:17px}.drawer .soft-btn{color:#466056;border-color:#9fb4a6;background:#faf9ee}.drawer .soft-btn:hover{background:#dce6d5}.drawer .notice{border-left:3px solid #c69e6f;padding:10px 13px;margin:13px 0;background:#eee3ce;color:#5e5e4d;font-size:12px;line-height:1.6;border-radius:0 12px 12px 0}.intention{width:100%;min-height:120px;resize:vertical;border:1px solid #c8bca3;border-radius:13px;padding:12px 14px;background:#fffcf4;color:#344440;font-size:14px;outline-offset:2px}.candle-svg{width:100%;max-width:220px;height:175px;display:block;margin:0 auto}.candle-lit .candle-big-flame{animation:flame .55s ease-in-out infinite alternate;transform-origin:center bottom;opacity:1}.candle-big-flame{opacity:0;transition:opacity .2s}.schedule-table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}.schedule-table tr+tr{border-top:1px solid #cabd9f}.schedule-table td{padding:11px 4px;vertical-align:top}.schedule-table td:last-child{text-align:right;font-weight:700;color:#50655e}.schedule-table .today{background:#ead9bc88;border-radius:10px}.stream-panel{margin-top:14px;background:#f9f6ed;border-radius:15px;padding:16px;border:1px solid #dbccb3}.stream-panel strong{font:18px Georgia,serif}.stream-panel p{font-size:12px;color:#647369}.stream-panel a.btn-link{display:inline-block;background:#365b52;color:#fef6e5;text-decoration:none;padding:11px 14px;border-radius:99px;font-size:12px;font-weight:750;margin:7px 5px 5px 0}.stream-panel a.btn-link.alt{background:#ebe1ca;color:#365b52}.embed-wrap{margin-top:12px;border-radius:12px;overflow:hidden;background:#141414;aspect-ratio:16/9}.embed-wrap iframe{width:100%;height:100%;border:0}.muted-note{font-size:12px;color:#6e766c;margin-top:11px}.heart{color:#f6c3b6}.screen-reader-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:1000px){.dashboard{grid-template-columns:1fr 1fr}.dashboard .pane:last-child{grid-column:1/-1}.scene-svg{height:clamp(400px,58vw,610px)}}
+@media(max-width:620px){header{padding:13px 15px}.brand strong{font-size:16px}.brand span{font-size:9px;letter-spacing:.09em}.emblem{width:38px;height:38px}.timechip{font-size:9px;padding:6px 9px}.timechip b{font-size:12px}.header-right{gap:6px}.icon-btn{width:34px;height:34px}.lang-toggle button{padding:7px 8px}.intro{margin:6px 12px 13px}.intro h1{font-size:29px}.intro .eyebrow{font-size:9px}.intro p{font-size:13px}.scene-wrap{margin:0 8px;border-radius:19px}.scene-svg{height:min(65vh,540px);min-height:355px}.scene-svg svg{width:100%;height:100%}.enter-prompt{padding:12px 13px 14px}.enter-prompt strong{font-size:16px}.enter-prompt small{font-size:11px}.small-caption{left:10px;bottom:7px;font-size:9px}.inside-actions{top:8px;right:8px;gap:5px}.float-action{font-size:10px;padding:7px 9px}.scene-hint{font-size:10px;bottom:8px}.back-btn{left:8px;top:8px;padding:7px 10px;font-size:10px}.dashboard{display:flex;flex-direction:column;gap:9px;padding:12px 9px 18px}.pane{min-height:0;padding:17px}.pane h2{font-size:19px}.big-time{font-size:26px}.page-footer{font-size:10px}.drawer{padding:18px 19px 30px}.paper .prayer-body{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.work-prayer-banner{margin:8px clamp(12px,4vw,50px) 16px;padding:18px 22px;border:1px solid #f1d59e80;border-radius:22px;background:linear-gradient(110deg,#28453f,#385149 56%,#624b3c);display:flex;justify-content:space-between;align-items:center;gap:16px;box-shadow:0 10px 30px #0002}.work-prayer-banner[hidden]{display:none}.work-prayer-banner small{color:#f8d8a0;letter-spacing:.11em;font-size:10px;font-weight:800}.work-prayer-banner strong{display:block;font:normal clamp(18px,2vw,24px) Georgia,serif;margin-top:6px}.work-prayer-banner p{margin:6px 0 0;color:#eee9da;font-size:13px}.work-prayer-banner button{white-space:nowrap;flex-shrink:0}@media(max-width:680px){.work-prayer-banner{flex-direction:column;align-items:stretch;padding:16px}.work-prayer-banner button{width:100%}}
+.memorial-prayer-banner{background:linear-gradient(115deg,#334250,#51465e 57%,#66544c);border-color:#eddbb7a0}.memorial-prayer-banner strong{font-size:clamp(20px,2.35vw,26px)}.memorial-prayer-banner p{line-height:1.6}
+.daily-prayer-banner{background:linear-gradient(110deg,#344e52,#34615a 56%,#5b5441);border-color:#eddba480}.daily-prayer-banner strong{font-size:clamp(19px,2.2vw,27px)}
+</style>
+</head>
+<body>
+<div id="wrapper">
+ <header>
+  <a href="#" class="brand" id="brandLink" aria-label="Nhà thờ Kim Hải"><span class="emblem" aria-hidden="true">✝</span><span><strong>Nhà thờ Kim Hải</strong><span data-i18n="brandTag">A little place to pray together</span></span></a>
+  <div class="header-right">
+   <div class="timechip" title="Vietnam time"><span aria-hidden="true">◷</span><span><span data-i18n="vn">VN</span> <b id="clock">--:--</b></span></div>
+   <div class="lang-toggle" role="group" aria-label="Language"><button id="btnVI" type="button" aria-pressed="true">VI</button><button id="btnEN" type="button" aria-pressed="false">EN</button></div>
+   <button class="icon-btn" id="infoBtn" type="button" aria-label="Information" title="Information">ⓘ</button>
+  </div>
+ </header>
+ <section class="intro"><div class="eyebrow" data-i18n="welcome">A little church, always open</div><h1 data-i18n="title">Nơi chúng mình cùng cầu nguyện</h1><p data-i18n="subtitle">Dù ở xa, Varun vẫn ở thật gần bên Thảo. Cùng hướng lên Thánh Giá, bình an ở đây mỗi ngày.</p></section>
+  <div id="dailyPrayer" class="work-prayer-banner daily-prayer-banner"><div><small id="dailyPrayerEyebrow">✝ TODAY’S PRAYER</small><strong id="dailyPrayerHeading">A daily moment of prayer</strong><p id="dailyPrayerBlurb">A different gentle prayer every day, to share together.</p></div><button id="dailyPrayerOpen" type="button" class="primary-btn">🙏 Pray together</button></div>
+  <div id="memorialPrayerDay" class="work-prayer-banner memorial-prayer-banner" hidden><div><small id="memorialPrayerEyebrow">🕯 MEMORIAL PRAYER · 17 NOVEMBER 2026</small><strong id="memorialPrayerHeading">Remembering Nguyễn Mộc Cát Tiên</strong><p id="memorialPrayerBlurb">Remembering a beloved little girl who passed away in 2023. May she rest safely in God’s loving arms.</p></div><button id="memorialPrayerOpen" type="button" class="primary-btn">🙏 Pray for Cát Tiên</button></div>
+ <div id="workPrayerToday" class="work-prayer-banner" hidden><div><small id="workPrayerEyebrow">✝ SPECIAL PRAYER · 16 NOVEMBER</small><strong id="workPrayerHeading">A prayer for peace and solutions at work</strong><p id="workPrayerBlurb">For clarity, understanding, and the courage to resolve every work difficulty.</p></div><button id="workPrayerOpen" type="button" class="primary-btn">🙏 Read today's prayer</button></div>
+ <main>
+  <section class="scene-wrap" aria-label="Interactive animated virtual church">
+   <div class="scene-svg">
+   <svg id="world" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="sceneTitle sceneDesc" xmlns="http://www.w3.org/2000/svg">
+   <title id="sceneTitle">A peaceful animated church</title><desc id="sceneDesc">Varun and Thảo, two small illustrated people wearing shirts with their names, can walk into a church, stay close together, face the cross, sit or kneel together by the pews, while a priest stands clearly near the altar.</desc>
+   <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#284f64"/><stop offset=".58" stop-color="#879b92"/><stop offset="1" stop-color="#efce9c"/></linearGradient>
+    <linearGradient id="walls" x2="0" y2="1"><stop stop-color="#e9ddbe"/><stop offset=".68" stop-color="#cfbf9b"/><stop offset="1" stop-color="#bca67d"/></linearGradient>
+    <linearGradient id="wallinner" x2="0" y2="1"><stop stop-color="#d9c7a4"/><stop offset=".5" stop-color="#f3e4c7"/><stop offset="1" stop-color="#b99b78"/></linearGradient>
+    <linearGradient id="floor" x2="0" y2="1"><stop stop-color="#9c8067"/><stop offset="1" stop-color="#e2c49a"/></linearGradient>
+    <linearGradient id="wood" x2="0" y2="1"><stop stop-color="#9c6748"/><stop offset=".5" stop-color="#c08a5e"/><stop offset="1" stop-color="#6e4935"/></linearGradient>
+    <linearGradient id="glass" x2="0" y2="1"><stop stop-color="#658a8d"/><stop offset=".44" stop-color="#8a728d"/><stop offset="1" stop-color="#e8bd75"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#fff2c3" stop-opacity=".9"/><stop offset="1" stop-color="#fcdfa2" stop-opacity="0"/></radialGradient>
+    <pattern id="tiles" width="70" height="70" patternUnits="userSpaceOnUse" patternTransform="skewX(7)"><path d="M0 0H70M0 0V70" stroke="#795941" stroke-width="1" opacity=".18" fill="none"/></pattern>
+    <filter id="softGlow"><feGaussianBlur stdDeviation="10"/></filter>
+    <g id="varun-shape" class="character">
+     <ellipse cx="0" cy="-2" rx="26" ry="7" fill="#382a25" opacity=".20"/>
+     <path class="leg" d="M-15-44 L-18-9 Q-18 1 -12 0 L-3-8 L-1-41 Z" fill="#374b5d"/><path class="leg" d="M2-41 L6-8 L17 0 Q23-2 18-12 L16-46 Z" fill="#344858"/>
+     <path d="M-21-13 Q-25-6 -13-4 L-1-4 L-3-11 Z" fill="#e8e3d4"/><path d="M6-11 L19-6 Q25-4 22 0 L9-1 Z" fill="#eee6d8"/>
+     <path class="arm" d="M-30-88Q-39-73-32-52L-22-52L-19-86Z" fill="#b77d54"/><path class="arm" d="M28-89Q40-72 32-53L22-53L18-88Z" fill="#b77d54"/>
+     <path d="M-25-92Q-9-105 25-92 L23-44 Q0-38 -22-44Z" fill="#75949b" stroke="#d8ebdf" stroke-width="2"/>
+     <text x="0" y="-64" fill="#203c45" font-size="13" font-weight="900" text-anchor="middle" font-family="Arial,sans-serif">VARUN</text>
+     <path d="M-14-111 Q-26-126-15-138 Q0-149 16-138 Q27-125 14-109 Q1-99-14-111" fill="#bc845b"/>
+     <path d="M-19-127 Q-26-147 -6-149 Q14-157 21-138 Q10-142 6-145 Q-7-140-19-127" fill="#262c2d"/>
+     <circle cx="-7" cy="-124" r="1.7" fill="#363033"/><circle cx="8" cy="-124" r="1.7" fill="#363033"/><path d="M-4-117q5 4 9 0" stroke="#654634" stroke-width="1.5" fill="none"/>
+    </g>
+    <g id="thao-shape" class="character second">
+     <ellipse cx="0" cy="-2" rx="26" ry="7" fill="#382a25" opacity=".20"/>
+     <path d="M-17-41L-15-8L-3 0L1-44Z" fill="#4f5366"/><path d="M3-43L9-8L20-5L19-44Z" fill="#424b5d"/>
+     <path d="M-17-10L-4-7L-2-1L-20 0Z" fill="#f1e6d7"/><path d="M9-10L20-8L24-1L7 0Z" fill="#f1e6d7"/>
+     <path class="arm" d="M-26-88Q-36-72-29-50L-18-52L-18-85Z" fill="#e2aa87"/><path class="arm" d="M26-87Q37-69 30-51L18-51L17-86Z" fill="#e2aa87"/>
+     <path d="M-23-94Q-8-101 23-94L26-45Q0-38-26-45Z" fill="#edd9b8" stroke="#ffedcd" stroke-width="2"/>
+     <text x="0" y="-64" font-size="14" font-weight="900" text-anchor="middle" fill="#76565b" font-family="Arial,sans-serif">THẢO</text>
+     <path d="M-24-132Q-18-159 3-152Q27-146 24-120L20-94Q6-86 14-111L-17-114Q-6-86-22-98Z" fill="#332a30"/>
+     <ellipse cx="0" cy="-124" rx="17" ry="21" fill="#e0a885"/>
+     <path d="M-19-132Q-15-151 0-150Q22-150 19-131Q12-137 8-141Q-4-133-19-132Z" fill="#35292c"/>
+     <circle cx="-7" cy="-124" r="1.6" fill="#3c3433"/><circle cx="7" cy="-124" r="1.6" fill="#3c3433"/><path d="M-4-115q5 4 9 0" stroke="#9e625d" stroke-width="1.5" fill="none"/>
+    </g>
+    <g id="varun-back" class="character">
+     <ellipse cx="0" cy="-2" rx="26" ry="7" fill="#382a25" opacity=".20"/>
+     <path class="leg" d="M-15-44 L-18-9 Q-18 1 -12 0 L-3-8 L-1-41 Z" fill="#374b5d"/><path class="leg" d="M2-41 L6-8 L17 0 Q23-2 18-12 L16-46 Z" fill="#344858"/>
+     <path d="M-21-13 Q-25-6 -13-4 L-1-4 L-3-11 Z" fill="#e8e3d4"/><path d="M6-11 L19-6 Q25-4 22 0 L9-1 Z" fill="#eee6d8"/>
+     <path class="arm" d="M-30-88Q-39-73-32-52L-22-52L-19-86Z" fill="#b77d54"/><path class="arm" d="M28-89Q40-72 32-53L22-53L18-88Z" fill="#b77d54"/>
+     <path d="M-25-92Q-9-105 25-92 L23-44 Q0-38 -22-44Z" fill="#75949b" stroke="#d8ebdf" stroke-width="2"/>
+     <text x="0" y="-64" fill="#203c45" font-size="13" font-weight="900" text-anchor="middle" font-family="Arial,sans-serif">VARUN</text>
+     <ellipse cx="0" cy="-123" rx="17" ry="21" fill="#bc845b"/>
+     <path d="M-22-133Q-18-156 1-154Q21-155 23-132L18-106Q8-99 0-99Q-9-100-19-108Z" fill="#262c2d"/>
+     <path d="M-14-112Q0-108 14-112L14-100Q1-94-14-100Z" fill="#bc845b"/>
+    </g>
+    <g id="thao-back" class="character second">
+     <ellipse cx="0" cy="-2" rx="26" ry="7" fill="#382a25" opacity=".20"/>
+     <path d="M-17-41L-15-8L-3 0L1-44Z" fill="#4f5366"/><path d="M3-43L9-8L20-5L19-44Z" fill="#424b5d"/>
+     <path d="M-17-10L-4-7L-2-1L-20 0Z" fill="#f1e6d7"/><path d="M9-10L20-8L24-1L7 0Z" fill="#f1e6d7"/>
+     <path class="arm" d="M-26-88Q-36-72-29-50L-18-52L-18-85Z" fill="#e2aa87"/><path class="arm" d="M26-87Q37-69 30-51L18-51L17-86Z" fill="#e2aa87"/>
+     <path d="M-23-94Q-8-101 23-94L26-45Q0-38-26-45Z" fill="#edd9b8" stroke="#ffedcd" stroke-width="2"/>
+     <text x="0" y="-64" font-size="14" font-weight="900" text-anchor="middle" fill="#76565b" font-family="Arial,sans-serif">THẢO</text>
+     <ellipse cx="0" cy="-123" rx="17" ry="22" fill="#e0a885"/>
+     <path d="M-24-137Q-17-165 0-161Q20-157 24-132L22-96Q9-85 14-110L-14-110Q-7-86-22-98Z" fill="#35292c"/>
+     <path d="M-12-109Q0-103 12-109L11-97Q0-91-11-97Z" fill="#e0a885"/>
+    </g>
+    <g id="pew">
+     <path d="M-155-5L145-5L161 19L-141 19Z" fill="#623e2c" opacity=".22" transform="translate(5 9)"/>
+     <path d="M-154-43L140-43L155-24L-138-24Z" fill="#a8704b" stroke="#825438" stroke-width="2"/>
+     <path d="M-142-29L152-29L159-11L-151-11Z" fill="url(#wood)" stroke="#795139" stroke-width="1.5"/>
+     <path d="M-154-12L-139 12L-128 12L-137-13ZM140-11L155 12L166 12L151-12Z" fill="#835339"/>
+     <path d="M-125-40L-125-18M80-40L80-18" stroke="#e4ad75" stroke-width="4" opacity=".5"/>
+    </g>
+    <g id="glass-window">
+     <path d="M-40 115V-14Q-40-72 0-92Q40-72 40-14V115Z" fill="#594c45" stroke="#a8916d" stroke-width="9"/>
+     <path d="M-30 107V-12Q-30-62 0-78Q30-62 30-12V107Z" fill="url(#glass)" stroke="#eddfba" stroke-width="2"/>
+     <path d="M0-78V107M-30 11H30M-29 67H29" stroke="#c8ac75" stroke-width="6"/><path d="M-29 11L29 67M29 11L-29 67" stroke="#d1bb90" stroke-width="3"/>
+     <circle cx="0" cy="-20" r="14" fill="#f2d48d" opacity=".7"/>
+    </g>
+   </defs>
+   <!-- exterior -->
+   <g id="outside" class="svg-scene active">
+    <path d="M0 0H1200V760H0Z" fill="url(#sky)"/>
+    <circle cx="954" cy="114" r="155" fill="url(#halo)" class="sunray"/><circle cx="965" cy="111" r="40" fill="#f6db9f" opacity=".75"/>
+    <path d="M0 497Q190 430 340 462T650 456T950 472T1200 445V760H0Z" fill="#577568"/><path d="M0 573Q200 519 437 545T790 532T1200 560V760H0Z" fill="#395c57"/>
+    <g fill="#38584e" opacity=".9"><path d="M42 540L80 250L117 540Z"/><path d="M78 545L112 310L150 540Z"/><path d="M1100 563L1140 236L1182 563Z"/><path d="M1070 560L1103 321L1135 560Z"/></g>
+    <path d="M0 670L380 530H820L1200 670V760H0Z" fill="#c9ac83"/><path d="M445 542L370 760H824L760 542Z" fill="#e6d1ad"/><path d="M489 542L443 760M705 542L748 760" stroke="#bfa27f" stroke-width="3" opacity=".6"/>
+    <g fill="#eadbbd" stroke="#bca988" stroke-width="4">
+     <rect x="305" y="322" width="590" height="280" rx="9"/>
+     <rect x="346" y="270" width="508" height="330"/>
+    </g>
+    <path d="M282 324L600 136L918 324Z" fill="#b89b76" stroke="#f6e6c4" stroke-width="8"/><path d="M338 321L600 167L862 321Z" fill="#ecdbb9" stroke="#bba37d" stroke-width="3"/>
+    <rect x="534" y="132" width="132" height="146" rx="2" fill="#e7d8b6" stroke="#bca17c" stroke-width="7"/>
+    <path d="M512 136L600 65L689 136Z" fill="#b68c67" stroke="#f2e1bc" stroke-width="6"/>
+    <path d="M591 60H609V23H619V15H609V-3H591V15H581V23H591Z" fill="#eedcb8"/>
+    <circle cx="600" cy="195" r="32" fill="#577b80" stroke="#b19776" stroke-width="8"/><path d="M600 168V223M573 195H627" stroke="#ebc27f" stroke-width="6"/>
+    <path d="M391 340H481V528H391Z" fill="#d8c7a8"/><use href="#glass-window" transform="translate(436 401) scale(.67)"/>
+    <path d="M721 340H811V528H721Z" fill="#d8c7a8"/><use href="#glass-window" transform="translate(766 401) scale(.67)"/>
+    <g fill="#f0e2c7"><rect x="333" y="331" width="23" height="246"/><rect x="845" y="331" width="23" height="246"/></g>
+    <path d="M496 589V424Q496 323 600 307Q704 323 704 424V589Z" fill="#a9815e" stroke="#f2e5cd" stroke-width="14"/>
+    <path d="M512 581V429Q512 338 599 321V581Z" fill="#674e3c" stroke="#392e28" stroke-width="4"/>
+    <path d="M601 321Q690 338 690 429V581H601Z" fill="#704e37" stroke="#392e28" stroke-width="4"/>
+    <path d="M600 326V579" stroke="#d5a876" stroke-width="3"/>
+    <circle cx="572" cy="476" r="6" fill="#ead398"/><circle cx="626" cy="476" r="6" fill="#ead398"/>
+    <path d="M420 598H780V619H420Z" fill="#c0a07b"/><path d="M400 619H800V641H400Z" fill="#dec8a3"/>
+    <path d="M600 235L616 264L584 264Z" fill="#b99d78"/><text x="600" y="286" font-family="Georgia,serif" fill="#7a6a59" font-size="21" text-anchor="middle" letter-spacing="4">KIM HẢI</text>
+    <g transform="translate(486 735) scale(1.06)"><use href="#varun-shape"/></g>
+    <g transform="translate(704 735) scale(1.06)"><use href="#thao-shape"/></g>
+    <g opacity=".8"><circle class="firefly" cx="190" cy="270" r="3" fill="#f7e4a2"/><circle class="firefly" cx="1034" cy="357" r="2.6" fill="#f9e6b3"/><circle class="firefly" cx="233" cy="531" r="3" fill="#f9e6b3"/></g>
+    <g id="doorHit" class="interactive" role="button" tabindex="0" aria-label="Enter the church"><path d="M498 581V422Q498 318 600 306Q703 318 703 422V581Z" fill="transparent"/></g>
+   </g>
+   <!-- interior -->
+   <g id="inside" class="svg-scene hidden">
+    <rect width="1200" height="760" fill="url(#wallinner)"/>
+    <path d="M0 0Q600 -160 1200 0V137H0Z" fill="#9b755b"/><path d="M34 0Q600 -105 1166 0" fill="none" stroke="#f2e2bc" stroke-width="22" opacity=".8"/>
+    <path d="M0 0V760H134L249 167L251 0Z" fill="#cbb48e"/><path d="M1200 0V760H1066L951 167L949 0Z" fill="#d0bb98"/>
+    <path d="M220 100Q600 15 980 100V390H220Z" fill="#ddc9a5" stroke="#ab9072" stroke-width="12"/>
+    <path d="M265 142Q600 65 935 142V394H265Z" fill="#e7d6b7"/>
+    <path d="M230 384H970L1200 760H0Z" fill="url(#floor)"/>
+    <path d="M230 384H970L1200 760H0Z" fill="url(#tiles)" opacity=".8"/>
+    <path d="M518 392H681L813 760H379Z" fill="#e8cda6" opacity=".68"/><path d="M530 392L401 760M671 392L798 760" stroke="#9b7556" opacity=".26" stroke-width="2"/>
+    <path d="M0 100L245 160L230 390L0 600Z" fill="#d0b994"/><path d="M1200 100L955 160L970 390L1200 600Z" fill="#d1b998"/>
+    <use href="#glass-window" transform="translate(121 247) scale(1.18)"/><use href="#glass-window" transform="translate(1080 247) scale(1.18)"/>
+    <path class="sunray" d="M155 328L415 760H625L186 340Z" fill="#f3d796" opacity=".18"/><path class="sunray" d="M1055 328L840 760H665L1027 341Z" fill="#f3d796" opacity=".15"/>
+    <path d="M195 0V395M1005 0V395" stroke="#f7e9c4" stroke-width="33"/><path d="M225 0V386M975 0V386" stroke="#a18266" stroke-width="6" opacity=".5"/>
+    <path d="M328 106Q600 -11 872 106V342H328Z" fill="#c3ab88" stroke="#987858" stroke-width="10"/>
+    <path d="M345 116Q600 11 855 116V338H345Z" fill="#dfcaa1"/>
+
+    <!-- Four framed moments from the life of Jesus: Nativity, teaching, Crucifixion and Resurrection. -->
+    <g id="life-of-christ-art" aria-label="Paintings depicting scenes from the life of Jesus" pointer-events="none">
+      <!-- Nativity -->
+      <g transform="translate(297 165)">
+       <title>The Nativity — Jesus is born in Bethlehem</title>
+       <rect x="-5" y="-5" width="91" height="119" rx="5" fill="#5f4435" opacity=".24"/>
+       <rect x="0" y="0" width="80" height="108" rx="4" fill="#936744" stroke="#f3d9a2" stroke-width="5"/>
+       <rect x="7" y="7" width="66" height="94" rx="2" fill="#33485c"/>
+       <path d="M7 55L42 26L73 55V100H7Z" fill="#6c514c"/><path d="M12 61L42 34L69 61" stroke="#d6a869" stroke-width="3" fill="none"/>
+       <path d="M38 16L41 8L44 16L52 18L44 20L41 28L38 20L30 18Z" fill="#ffe9a1"/>
+       <circle cx="26" cy="58" r="10" fill="#e8bc93"/><path d="M13 58Q26 27 37 58V94H12Z" fill="#6785a0"/>
+       <circle cx="56" cy="60" r="9" fill="#c99372"/><path d="M47 63Q56 38 65 63V95H47Z" fill="#99806a"/>
+       <ellipse cx="42" cy="86" rx="20" ry="8" fill="#ab7f55"/><path d="M24 82H60L55 93H29Z" fill="#aa6b43"/>
+       <ellipse cx="42" cy="79" rx="10" ry="6" fill="#f7e7b9"/><circle cx="42" cy="74" r="5" fill="#ecc39a"/>
+      </g>
+      <!-- Jesus teaching -->
+      <g transform="translate(393 165)">
+       <title>Jesus teaching and blessing the crowd</title>
+       <rect x="-5" y="-5" width="91" height="119" rx="5" fill="#5f4435" opacity=".24"/>
+       <rect width="80" height="108" rx="4" fill="#936744" stroke="#f3d9a2" stroke-width="5"/>
+       <rect x="7" y="7" width="66" height="94" rx="2" fill="#77929a"/>
+       <path d="M7 68Q36 44 73 67V100H7Z" fill="#6e816c"/>
+       <circle cx="40" cy="37" r="17" fill="none" stroke="#f5df9b" stroke-width="4" opacity=".8"/>
+       <path d="M30 40Q25 27 32 23Q40 18 48 24Q55 30 49 42Z" fill="#5e473c"/>
+       <ellipse cx="40" cy="38" rx="11" ry="15" fill="#d4a17d"/>
+       <path d="M27 52Q40 43 53 52L60 91H20Z" fill="#eee6ca"/>
+       <path d="M50 58L67 45" stroke="#d4a17d" stroke-width="6" stroke-linecap="round"/><circle cx="68" cy="44" r="4" fill="#d4a17d"/>
+       <circle cx="17" cy="83" r="7" fill="#c58a6b"/><circle cx="64" cy="84" r="7" fill="#bb8665"/>
+       <path d="M8 100Q17 82 27 100ZM55 100Q64 81 74 100" fill="#85647a"/>
+      </g>
+      <!-- Crucifixion -->
+      <g transform="translate(727 165)">
+       <title>The Crucifixion — Jesus on the cross</title>
+       <rect x="-5" y="-5" width="91" height="119" rx="5" fill="#5f4435" opacity=".24"/>
+       <rect width="80" height="108" rx="4" fill="#936744" stroke="#f3d9a2" stroke-width="5"/>
+       <rect x="7" y="7" width="66" height="94" rx="2" fill="#aa8a85"/>
+       <path d="M7 79Q42 48 73 79V101H7Z" fill="#675b65"/><circle cx="55" cy="29" r="19" fill="#f4d29a" opacity=".18"/>
+       <path d="M37 18H44V91H37Z" fill="#69473b"/><path d="M18 34H63V40H18Z" fill="#69473b"/>
+       <circle cx="40" cy="33" r="7" fill="#d5ab89"/>
+       <path d="M34 41L24 38M46 41L57 38" stroke="#d5ab89" stroke-width="5" stroke-linecap="round"/>
+       <path d="M35 43L31 60L40 68L48 60L45 43Z" fill="#e7d3ba"/><path d="M35 63L32 76M45 63L49 76" stroke="#d6a68c" stroke-width="4"/>
+       <path d="M13 91Q22 76 31 91M51 91Q60 76 69 91" fill="#344d64"/>
+      </g>
+      <!-- Resurrection -->
+      <g transform="translate(823 165)">
+       <title>The Resurrection — the empty tomb</title>
+       <rect x="-5" y="-5" width="91" height="119" rx="5" fill="#5f4435" opacity=".24"/>
+       <rect width="80" height="108" rx="4" fill="#936744" stroke="#f3d9a2" stroke-width="5"/>
+       <rect x="7" y="7" width="66" height="94" rx="2" fill="#6e9db2"/>
+       <circle cx="43" cy="29" r="23" fill="#ffe1a3" opacity=".38"/>
+       <path d="M42 20V61M30 33H54" stroke="#f6e2b9" stroke-width="4"/>
+       <path d="M7 82Q38 55 73 81V101H7Z" fill="#7e876e"/>
+       <path d="M17 89Q17 49 46 50Q74 52 74 89Z" fill="#958879"/>
+       <path d="M29 89V71Q29 58 47 58Q62 62 62 76V89Z" fill="#293d4a"/>
+       <ellipse cx="20" cy="88" rx="16" ry="18" fill="#b4a798"/>
+       <path d="M47 57Q59 43 68 49" stroke="#f9e7b0" stroke-width="3" fill="none"/>
+      </g>
+    </g>
+    <circle cx="600" cy="166" r="105" fill="url(#halo)"/>
+    <path d="M586 90H613V43H626V29H613V2H586V29H574V43H586Z" transform="translate(0 92)" fill="#ad744c" stroke="#e5c08b" stroke-width="4"/>
+    <path d="M586 199Q593 214 600 213Q608 214 614 199L615 159Q599 147 585 159Z" fill="#deb78a" opacity=".48"/>
+
+    <!-- Animated celebrant in vestments, intentionally without a visible name/title label. -->
+    <g id="priest" class="priest-figure" transform="translate(676 337) scale(.88)" aria-label="Animated Catholic priest wearing Mass vestments">
+     <g class="priest-vestments">
+      <ellipse cx="0" cy="2" rx="48" ry="9" fill="#7a6657" opacity=".24"/>
+      <path d="M-31-109Q-13-117 12-117Q28-115 37-102L41-1Q1 11-42-1Z" fill="#f7f4e9" stroke="#cfc2af" stroke-width="3"/>
+      <path d="M-28-101Q-43-102-55-73L-56-53L-37-47L-23-82Z" fill="#f8efdd" stroke="#cfc2ad" stroke-width="2"/>
+      <path d="M29-102Q44-99 52-78L55-51L37-47L22-82Z" fill="#f6eadd" stroke="#cfc2ad" stroke-width="2"/>
+      <path d="M-29-110L-43-24Q-38 3-3 4Q37 4 45-24L27-110Q0-124-29-110Z" fill="#44765e" stroke="#d5c29d" stroke-width="2.5"/>
+      <path d="M-26-109L-35-24Q-27-4-7 0L-12-110ZM24-109L36-24Q28-4 9 0L12-111Z" fill="#54866d" opacity=".64"/>
+      <path d="M-9-113L-13-23Q0-12 13-23L9-113" fill="#f2d79a" stroke="#ba965a" stroke-width="2"/>
+      <path d="M-1-93H2V-54H-1Z" fill="#99723a"/><path d="M-11-79H12V-74H-11Z" fill="#99723a"/>
+      <path d="M-29-108Q-1-121 29-108" stroke="#efcf8f" stroke-width="5" fill="none"/>
+      <path d="M-24-108Q-22-126 0-123Q21-125 26-108L10-113L-9-113Z" fill="#faf2e5"/>
+      <rect x="-9" y="-119" width="18" height="16" rx="7" fill="#c58c6c"/>
+      <path d="M-22-150Q-24-177-4-180Q22-182 24-156L20-130Q6-119-5-122Q-18-123-22-137Z" fill="#b57d62"/>
+      <ellipse cx="1" cy="-149" rx="22" ry="29" fill="#d4a180"/>
+      <path d="M-21-154Q-24-176-8-183Q5-188 17-181Q26-173 24-158L17-167Q6-162-7-168L-19-158Z" fill="#5d5048"/>
+      <path d="M-12-135Q0-125 12-135" fill="none" stroke="#ad6e5c" stroke-width="2"/>
+      <g class="priest-blink"><path d="M-12-150H-6M6-150H12" stroke="#573f36" stroke-width="2" stroke-linecap="round"/></g>
+      <path d="M-19-125L-11-115L0-122L11-115L19-125" fill="none" stroke="#f2e7cf" stroke-width="4"/>
+      <path d="M-47-52L-42-41L-34-44L-35-55Z" fill="#d7a487"/>
+     </g>
+     <g class="priest-blessing">
+      <path d="M42-101Q58-98 62-78L65-67" fill="none" stroke="#f8efdd" stroke-width="19" stroke-linecap="round"/>
+      <path d="M65-69L74-81Q79-86 83-82L87-75L80-59L69-53L60-61Z" fill="#d9a484"/>
+      <path d="M80-72L90-88M76-74L82-92" fill="none" stroke="#d9a484" stroke-width="5" stroke-linecap="round"/>
+     </g>
+    </g>
+    <path d="M413 336L441 300H759L787 336Z" fill="#b39069"/><path d="M412 337H789V360H412Z" fill="#b99a75"/><path d="M444 355H756V384H444Z" fill="#a48160"/><path d="M433 380H769V399H433Z" fill="#dfc6a1" stroke="#ba9c74" stroke-width="5"/>
+    <path d="M507 337L514 300H686L693 337Z" fill="#fff6e5" stroke="#9d8d72" stroke-width="4"/>
+    <path d="M505 300H695V316H505Z" fill="#f9eede"/>
+
+    <!-- An open Bible at the altar, pages resting on a small lectern. -->
+    <g id="altar-bible" aria-label="Open Bible resting on the altar">
+      <path d="M556 318L600 302L645 318L634 328H570Z" fill="#825338" stroke="#684830" stroke-width="2"/>
+      <path d="M600 289L557 284L548 307L596 316Z" fill="#a5683e" stroke="#7d4b31" stroke-width="2"/>
+      <path d="M600 289L644 284L653 307L604 316Z" fill="#a5683e" stroke="#7d4b31" stroke-width="2"/>
+      <path d="M599 286Q575 273 557 281L551 301Q580 294 599 312Z" fill="#fff5d9" stroke="#b99d74" stroke-width="2"/>
+      <path d="M602 286Q628 273 644 281L650 301Q622 294 602 312Z" fill="#fff5d9" stroke="#b99d74" stroke-width="2"/>
+      <path d="M600 285V312" stroke="#b58a5e" stroke-width="2.5"/>
+      <path d="M560 285Q577 280 593 291M558 291Q577 286 592 297M557 297Q574 291 590 303" fill="none" stroke="#b0a18d" stroke-width="1.35" opacity=".83"/>
+      <path d="M610 291Q626 281 641 285M609 297Q627 286 642 290M609 303Q627 292 645 296" fill="none" stroke="#b0a18d" stroke-width="1.35" opacity=".83"/>
+      <path d="M601 311L606 320L609 311" fill="#9e4c47"/>
+    </g>
+    <circle cx="481" cy="282" r="16" fill="#ffe0a0" opacity=".22" filter="url(#softGlow)"/><circle cx="481" cy="302" r="7" fill="#f0dcae"/><circle cx="717" cy="282" r="16" fill="#ffe0a0" opacity=".22" filter="url(#softGlow)"/><circle cx="717" cy="302" r="7" fill="#f0dcae"/>
+    <rect x="473" y="309" width="15" height="28" rx="3" fill="#f7e4bc"/><rect x="711" y="309" width="15" height="28" rx="3" fill="#f7e4bc"/>
+    <path class="candleflame" d="M480 297Q470 288 482 274Q495 287 480 297Z" fill="#f2b864"/><path class="candleflame" d="M718 297Q709 286 719 275Q731 289 718 297Z" fill="#f2b864"/>
+    <path d="M384 383H817" stroke="#937352" stroke-width="8" opacity=".7"/>
+    <g id="pewsLeft" aria-label="Pews on the left">
+     <use href="#pew" transform="translate(304 458) scale(.70)"/><use href="#pew" transform="translate(285 559) scale(.92)"/><use href="#pew" transform="translate(254 684) scale(1.16)"/>
+    </g>
+    <g id="pewsRight" aria-label="Pews on the right">
+     <use href="#pew" transform="translate(894 458) scale(.70)"/><use href="#pew" transform="translate(915 559) scale(.92)"/><use href="#pew" transform="translate(947 684) scale(1.16)"/>
+    </g>
+    <path d="M35 618L93 490L129 499L83 659Z" fill="#af7950"/><path d="M1117 656L1071 496L1108 488L1164 621Z" fill="#af7950"/>
+    <g id="innerCandles" transform="translate(1078 463)">
+      <ellipse cx="0" cy="-49" rx="57" ry="42" fill="#f7cf82" opacity=".17" filter="url(#softGlow)"/>
+      <ellipse cx="0" cy="12" rx="53" ry="15" fill="#9c714c" opacity=".5"/>
+      <rect x="-42" y="-15" width="85" height="22" rx="4" fill="#e3c9a2"/><path d="M-40-13H40" stroke="#806547" stroke-width="3"/>
+      <g id="flamesMini" opacity="1"><rect x="-27" y="-36" width="12" height="22" rx="3" fill="#f7e6c8"/><rect x="-4" y="-45" width="12" height="31" rx="3" fill="#f7e6c8"/><rect x="20" y="-35" width="11" height="22" rx="3" fill="#f7e6c8"/><path class="candleflame" d="M-22-40Q-31-50-21-59Q-10-49-22-40M2-47Q-7-57 2-67Q12-55 2-47M25-36Q16-46 25-54Q35-44 25-36" fill="#ffc36f"/></g>
+    </g>
+    <g id="innerVarun" class="avatar" transform="translate(575 739) scale(.92)"><use href="#varun-back"/></g>
+    <g id="innerThao" class="avatar" transform="translate(629 739) scale(.92)"><use href="#thao-back"/></g>
+    <g id="pewClick" class="interactive" role="button" tabindex="0" aria-label="Sit and pray together"><path d="M60 470H480V738H60ZM720 470H1150V738H720Z" fill="transparent"/></g>
+   </g>
+   </svg>
+   </div>
+   <button id="backBtn" class="back-btn" type="button" data-i18n="outsideBtn">← Outside</button>
+   <div id="enterOverlay" class="scene-overlay"><div class="enter-prompt"><strong data-i18n="doorText">Thảo ơi, mình vào nhà thờ nhé?</strong><small data-i18n="doorSub">Hai nhân vật nhỏ sẽ luôn cùng nhau vào cầu nguyện.</small><button type="button" class="primary-btn" id="enterBtn" data-i18n="enter">✝ Enter the church together</button></div></div>
+   <div id="insideActions" class="inside-actions"><button class="float-action" id="walkBtn" type="button" data-i18n="walk">↗ Walk to the altar</button><button class="float-action" id="sitBtn" type="button" data-i18n="sit">♡ Sit together</button><button class="float-action" id="kneelBtn" type="button" data-i18n="kneel">✝ Kneel & pray</button><button class="float-action" id="bellBtn" type="button" data-i18n="bellBtn">🔔 Ring the bell</button></div>
+   <div id="hint" class="scene-hint" role="status" aria-live="polite"></div>
+   <div class="small-caption" data-i18n="artistNote">An illustrated place inspired by Giáo xứ Kim Hải · not a live camera</div>
+  </section>
+  <section class="dashboard">
+   <div class="pane"><div class="label" data-i18n="massLabel">Parish Mass times · Vietnam</div><h2 data-i18n="nextMass">Next Mass</h2><div class="big-time" id="nextMassTime">--:--</div><p id="countdown"><span class="status-dot"></span> ...</p><div class="action-row"><button class="soft-btn" id="scheduleBtn" type="button" data-i18n="scheduleBtn">See full schedule ↗</button><button class="soft-btn accent" id="massBtn" type="button" data-i18n="massBtn">✝ Mass & audio</button></div></div>
+   <div class="pane"><div class="label" data-i18n="togetherLabel">A quiet place for two</div><h2 data-i18n="always">Thảo never prays alone here.</h2><p class="heartline" data-i18n="promise">“Dù xa nhau, mình vẫn cùng cầu nguyện.” ♡</p><p data-i18n="togetherDesc">Walk in together, sit beside each other, kneel and share a quiet moment.</p><div class="action-row"><button class="soft-btn" id="prayersBtn" type="button" data-i18n="openBook">📖 Prayer book</button><button class="soft-btn" id="candlesBtn" type="button" data-i18n="candleBtn">🕯 Light a candle</button><button class="soft-btn" id="intentionBtn" type="button" data-i18n="intentBtn">♡ Prayer intention</button></div></div>
+   <div class="pane"><div class="label" data-i18n="todayLabel">Today in Vietnam</div><h2 id="todayDate">...</h2><p id="todayServices" class="schedule-compact">...</p><p id="scheduleFreshness" aria-live="polite" style="font-size:11px;margin-top:9px;color:#dfd5bc"></p><div class="action-row"><button class="soft-btn" id="voiceBtn" type="button" data-i18n="voiceBtn">🔊 Listen to a prayer</button></div></div>
+  </section>
+ </main>
+ <footer class="page-footer"><div data-i18n="footerLove">Made with love for Thảo, from Varun. Wherever we are, we can pray together. ♡</div><div><span data-i18n="disclaimer">Independent virtual prayer space. Not affiliated with the parish. Online prayer is not a sacramental Mass.</span> <a href="https://www.giaophanbaria.org/gioi-thieu/cac-giao-hat/giao-hat-long-huong/2012/12/05/giao-xu-kim-hai.html" target="_blank" rel="noopener" data-i18n="source">Parish schedule source</a></div></footer>
+</div>
+<div id="backdrop" class="backdrop" aria-hidden="true"></div>
+<aside id="drawer" class="drawer" aria-modal="true" role="dialog" aria-labelledby="drawerTitle" aria-hidden="true"><div class="drawer-head"><div><small id="drawerKicker">✝</small><h2 id="drawerTitle">...</h2></div><button id="closeDrawer" type="button" class="drawer-close" aria-label="Close">×</button></div><div id="drawerBody"></div></aside>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const safeStore={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let lang=safeStore.get('kimhai_lang')==='en'?'en':'vi', scene='outside', pose='entrance', currentPanel=null, selectedPrayer='together', speaking=false, hasBell=false, bellsUsed=false, demoFrame=false;
+const YT='https://www.youtube.com/channel/UCVghYtE1Qwv0mxMWvmR8Z2w', LIVE='https://www.giaophanbaria.org/truyen-hinh-truc-tuyen';
+const SCHEDULE_DEFAULT={0:[270,420,1020],1:[270],2:[270],3:[270],4:[270,1070],5:[270],6:[270,1065]};
+let SCHEDULE=Object.fromEntries(Object.entries(SCHEDULE_DEFAULT).map(([d,times])=>[d,times.slice()]));
+let scheduleSync={checkedAt:null,loaded:false,fetchFailed:false};
+const DAY_EN=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const DAY_VI=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];
+const t={
+ en:{brandTag:'A little place to pray together',welcome:'A little church, always open',title:'A place where we pray together',subtitle:'Even when far apart, Varun is right beside Thảo. A small, peaceful corner for us.',vn:'VN',doorText:'Thảo, shall we go inside together?',doorSub:'Two little characters, walking into the church side by side.',enter:'✝ Enter the church together',outsideBtn:'← Outside',walk:'↗ Walk to the altar',sit:'♡ Sit together',kneel:'✝ Kneel & pray',bellBtn:'🔔 Ring the bell',artistNote:'An illustrated space inspired by Kim Hải parish · not a live camera',massLabel:'Parish Mass times · Vietnam',nextMass:'Next scheduled Mass',scheduleBtn:'See full schedule ↗',massBtn:'✝ Mass & audio',togetherLabel:'A quiet place for two',always:'Thảo never prays alone here.',promise:'“Even from far away, we can pray together.” ♡',togetherDesc:'Walk in, sit together in a pew, and kneel side by side in prayer.',openBook:'📖 Prayer book',candleBtn:'🕯 Prayer candles',intentBtn:'♡ Prayer intention',todayLabel:'Today in Vietnam',voiceBtn:'🔊 Listen to a prayer',footerLove:'Made with love for Thảo, from Varun. Wherever we are, we can pray together. ♡',disclaimer:'Independent virtual prayer space, not affiliated with Kim Hải parish. Online prayer is not a sacramental Mass.',source:'Parish schedule source',coming:'Mass begins in',now:'Scheduled Mass time is now',in:'in',hours:'h',mins:'min',days:'days',noMass:'No other Mass scheduled today',services:'Scheduled today',today:'Today',tomorrow:'Tomorrow',visit:'Your two little companions have entered the church.',nearAltar:'Varun and Thảo walk toward the altar.',seated:'They sit side by side, together.',kneeling:'They kneel together in quiet prayer.',openFor:'Open any time for personal prayer.',prayTitle:'Prayer book',praySub:'Prayers in English and Vietnamese',prayDesc:'Read slowly or listen to your device read the prayer aloud.',read:'Read aloud',stop:'Stop audio',listenNote:'Spoken prayers use your device’s text-to-speech voice, not real parish audio.',noSpeech:'Your browser does not support spoken prayers.',prayerEnd:'Amen.',candleTitle:'Always-lit prayer candles',candleSub:'A little flame for our intentions',candleDesc:'The altar and prayer candles remain lit here. Leave a personal intention beside their warm light.',candleLight:'Light our candle',candleOut:'Blow out the candle',candleOn:'These candles keep glowing, carrying our prayers.',candleOff:'A flame is waiting to be lit.',intentionTitle:'Our prayer intention',intentionSub:'Personal · saved only on this device',intentionDesc:'Write a private intention, a hope, or someone you want to pray for. It is not sent anywhere.',intentPlace:'God, please protect our loved ones…',save:'Save intention',saved:'Your intention has been saved on this device.',savedNone:'Write an intention to keep it here.',scheduleTitle:'Kim Hải Mass schedule',scheduleSub:'Official parish listing · Vietnam time (UTC+7)',scheduleDesc:'The times below follow the parish-specific Diocese of Bà Rịa listing. Holidays and special celebrations can differ.',scheduleNotice:'An older diocesan timetable also lists Monday and Friday 17:30 Masses. The parish-specific page does not; please verify weekday evening services with the church.',morning:'Morning',evening:'Evening',vigil:'Sunday vigil',massTitle:'Mass & real church audio',massSub:'Real parish streams when available',massDesc:'When Mass time arrives at Kim Hải, this virtual space highlights it automatically. Actual audio depends on whether the Diocese of Bà Rịa is broadcasting.',liveDisclaimer:'A broadcast from another parish may have a different start time or may be offline. We do not label a recording as live.',yt:'▶ Official Bà Rịa YouTube',diocese:'Diocesan livestream page ↗',tryEmbed:'Try live video here',hideEmbed:'Hide video player',embNote:'If no live stream is available, YouTube may show “Video unavailable”. Use the official channel or continue with the prayer book.',personal:'Personal prayer (any time)',noAuto:'Tap a stream link to listen. Browsers will not autoplay Mass audio.',liveMode:'Scheduled prayer window',starts:'Mass starts in',sourceLabel:'Schedule: Diocese of Bà Rịa parish page',syncInitial:'Automatic check has not run yet; showing the published regular schedule.',syncFresh:'Official schedule checked',syncStale:'Schedule check is overdue; verify with the parish. Last successful check',syncUnreachable:'Could not refresh now. Last successful check',syncOffline:'Offline schedule: automatic updates work only after GitHub Pages deployment.',syncNotice:'Regular Mass times only; special and last-minute changes may not be posted.',aboutTitle:'About this little church',aboutSub:'Made just for Thảo and Varun',aboutDesc:'This is an illustrated, unofficial virtual prayer corner inspired by Nhà thờ Kim Hải (St. Joseph parish). The priest and characters are drawings. The website never claims to provide sacraments, real-time footage or a guaranteed stream.',aboutLink:'View official parish page ↗',keyboard:'Tip: Tap a pew, or use the buttons to sit or kneel together.',autoBadge:'It is Mass time at Kim Hải.',needsTouch:'Audio starts after you choose to play it.'},
+ vi:{brandTag:'Một góc nhỏ để cùng cầu nguyện',welcome:'Nhà thờ nhỏ, luôn rộng cửa',title:'Nơi chúng mình cùng cầu nguyện',subtitle:'Dù ở xa, Varun vẫn ngồi bên cạnh Thảo. Một góc bình an dành cho hai đứa mình.',vn:'VN',doorText:'Thảo ơi, mình vào nhà thờ nhé?',doorSub:'Hai nhân vật nhỏ cùng bước vào nhà thờ, bên nhau.',enter:'✝ Cùng nhau vào nhà thờ',outsideBtn:'← Ra ngoài',walk:'↗ Đến gần bàn thờ',sit:'♡ Ngồi bên nhau',kneel:'✝ Quỳ gối cầu nguyện',bellBtn:'🔔 Tiếng chuông',artistNote:'Không gian minh họa lấy cảm hứng từ Giáo xứ Kim Hải · không phải camera trực tiếp',massLabel:'Giờ lễ giáo xứ · Giờ Việt Nam',nextMass:'Thánh lễ sắp tới',scheduleBtn:'Xem giờ lễ ↗',massBtn:'✝ Thánh lễ & âm thanh',togetherLabel:'Góc bình yên của đôi mình',always:'Ở đây, Thảo không cầu nguyện một mình.',promise:'“Dù xa nhau, mình vẫn cùng cầu nguyện.” ♡',togetherDesc:'Cùng bước vào, ngồi trên ghế nhà thờ và quỳ gối cầu nguyện.',openBook:'📖 Sách kinh',candleBtn:'🕯 Nến cầu nguyện',intentBtn:'♡ Ý nguyện',todayLabel:'Hôm nay tại Việt Nam',voiceBtn:'🔊 Nghe lời kinh',footerLove:'Varun làm tặng Thảo bằng tất cả yêu thương. Dù ở đâu, mình cũng có thể cùng cầu nguyện. ♡',disclaimer:'Góc cầu nguyện ảo độc lập, không trực thuộc Giáo xứ Kim Hải. Cầu nguyện trực tuyến không thay thế Thánh lễ.',source:'Nguồn giờ lễ giáo xứ',coming:'Thánh lễ bắt đầu sau',now:'Đang trong khung giờ lễ',in:'còn',hours:'giờ',mins:'phút',days:'ngày',noMass:'Hôm nay không còn giờ lễ',services:'Giờ lễ hôm nay',today:'Hôm nay',tomorrow:'Ngày mai',visit:'Varun và Thảo đã cùng bước vào nhà thờ.',nearAltar:'Varun và Thảo bước đến gần bàn thờ.',seated:'Hai đứa cùng ngồi bên nhau.',kneeling:'Hai đứa cùng quỳ gối cầu nguyện.',openFor:'Luôn mở cửa để cầu nguyện riêng.',prayTitle:'Sách kinh',praySub:'Lời kinh bằng tiếng Việt và tiếng Anh',prayDesc:'Đọc chậm rãi hoặc nghe giọng đọc từ thiết bị của bạn.',read:'Đọc lời kinh',stop:'Dừng đọc',listenNote:'Lời kinh được đọc bằng giọng tổng hợp trên thiết bị, không phải âm thanh Thánh lễ thật.',noSpeech:'Trình duyệt của bạn chưa hỗ trợ đọc lời kinh.',prayerEnd:'Amen.',candleTitle:'Ngọn nến luôn sáng',candleSub:'Một ánh nến cho những điều mong ước',candleDesc:'Nến trên bàn thờ và góc cầu nguyện luôn được thắp sáng. Mình có thể viết một ý nguyện bên ngọn nến.',candleLight:'Thắp nến của chúng mình',candleOut:'Tắt nến',candleOn:'Ngọn nến luôn sáng, nâng niu những lời cầu nguyện của chúng mình.',candleOff:'Một ngọn nến đang chờ được thắp.',intentionTitle:'Ý nguyện của chúng mình',intentionSub:'Riêng tư · chỉ lưu trên thiết bị này',intentionDesc:'Viết một ý nguyện, một hy vọng hoặc người mà bạn muốn cầu nguyện cho. Không gửi đi đâu cả.',intentPlace:'Lạy Chúa, xin gìn giữ những người con yêu thương…',save:'Lưu ý nguyện',saved:'Ý nguyện đã được lưu trên thiết bị này.',savedNone:'Hãy viết một ý nguyện để lưu tại đây.',scheduleTitle:'Giờ lễ Giáo xứ Kim Hải',scheduleSub:'Thông tin giáo xứ · Giờ Việt Nam (UTC+7)',scheduleDesc:'Giờ lễ theo trang giới thiệu riêng của Giáo phận Bà Rịa. Ngày lễ đặc biệt có thể thay đổi.',scheduleNotice:'Bảng tổng hợp giáo phận cũ còn ghi lễ chiều Thứ Hai và Thứ Sáu lúc 17:30, nhưng trang riêng giáo xứ không có. Vui lòng xác minh trước khi đi lễ chiều.',morning:'Sáng',evening:'Chiều',vigil:'Lễ vọng Chúa nhật',massTitle:'Thánh lễ & âm thanh thật',massSub:'Nguồn phát trực tiếp chính thức khi có',massDesc:'Khi đến giờ lễ tại Kim Hải, góc cầu nguyện tự chuyển trạng thái. Âm thanh Thánh lễ thật chỉ có khi Giáo phận Bà Rịa đang phát trực tiếp.',liveDisclaimer:'Lễ từ nhà thờ khác có thể bắt đầu giờ khác hoặc không đang phát. Video đã ghi không được gọi là trực tiếp.',yt:'▶ YouTube Giáo phận Bà Rịa',diocese:'Trang trực tiếp giáo phận ↗',tryEmbed:'Thử phát video tại đây',hideEmbed:'Đóng trình phát',embNote:'Nếu không có buổi phát, YouTube có thể báo “Video unavailable”. Hãy xem kênh chính thức hoặc tiếp tục với sách kinh.',personal:'Cầu nguyện riêng (bất cứ lúc nào)',noAuto:'Chạm vào liên kết để nghe. Trình duyệt sẽ không tự phát âm thanh Thánh lễ.',liveMode:'Khung giờ cầu nguyện theo lịch',starts:'Thánh lễ bắt đầu sau',sourceLabel:'Nguồn: Trang giáo xứ thuộc Giáo phận Bà Rịa',syncInitial:'Chưa kiểm tra tự động; đang hiển thị lịch lễ thường lệ đã đăng.',syncFresh:'Đã kiểm tra lịch lễ chính thức',syncStale:'Lịch kiểm tra quá hạn; hãy xác nhận với giáo xứ. Kiểm tra thành công lần cuối',syncUnreachable:'Không thể cập nhật lúc này. Kiểm tra thành công lần cuối',syncOffline:'Lịch lễ ngoại tuyến: chỉ cập nhật tự động sau khi đăng lên GitHub Pages.',syncNotice:'Chỉ có giờ lễ thường lệ; thay đổi đột xuất có thể chưa được đăng.',aboutTitle:'Về nhà thờ nhỏ này',aboutSub:'Dành tặng riêng Thảo và Varun',aboutDesc:'Đây là góc cầu nguyện ảo, minh họa lấy cảm hứng từ Nhà thờ Kim Hải (Giáo xứ Thánh Giuse), không phải trang chính thức. Linh mục và các nhân vật chỉ là hình vẽ; không có bí tích, hình ảnh nhà thờ trực tiếp hay cam kết livestream.',aboutLink:'Xem trang giáo xứ chính thức ↗',keyboard:'Mẹo: Chạm vào hàng ghế hoặc nút bên phải để cùng ngồi/quỳ gối.',autoBadge:'Đã đến giờ lễ tại Kim Hải.',needsTouch:'Âm thanh chỉ phát khi bạn chủ động bấm nút.'}
+};
+const PRAYERS={
+  memorialCatTien:{vi:{title:'Cầu nguyện cho bé Nguyễn Mộc Cát Tiên · 17/11',body:"Lạy Chúa Giêsu dịu hiền,\nHôm nay, chúng con nhớ đến Nguyễn Mộc Cát Tiên, cô bé thân thương đã rời xa gia đình vào năm 2023 khi tuổi đời còn rất nhỏ.\nCó những tuổi thơ chưa kịp lớn, những ước mơ còn dang dở, và những cái ôm mà gia đình vẫn luôn nhớ. Xin Chúa đón Cát Tiên vào vòng tay yêu thương của Ngài, nơi không còn đau đớn, sợ hãi hay nước mắt.\nXin cho em được vui chơi trong ánh sáng bình an của Chúa, được mỉm cười hồn nhiên như những ngày thơ bé.\nXin ôm lấy cha mẹ, người thân và tất cả những ai thương nhớ Cát Tiên. Khi nỗi nhớ trở nên thật nhiều, xin cho họ cảm nhận được sự an ủi, và tin rằng tình yêu dành cho em sẽ không bao giờ mất đi.\nLạy Chúa, xin cho linh hồn Nguyễn Mộc Cát Tiên được nghỉ yên muôn đời, và cho ánh sáng ngàn thu chiếu soi trên em.\nXin gìn giữ em trong tình yêu của Chúa, mãi mãi.\nAmen."},en:{title:'A gentle prayer for Nguyễn Mộc Cát Tiên · Nov 17',body:"Gentle Lord Jesus,\nToday we remember Nguyễn Mộc Cát Tiên, a beloved little girl whose young life ended in 2023.\nThere were dreams she had not yet grown into, precious moments still to come, and hugs her family will always miss. Please welcome Cát Tiên into Your loving arms, where there is no more pain, fear, or tears.\nLet her rest in Your light and peace, with the innocent joy and beautiful smile of childhood.\nHold her parents, family, and everyone who loves her close. When their hearts ache with missing her, bring them comfort and remind them that the love they carry for her will never disappear.\nEternal rest grant unto Nguyễn Mộc Cát Tiên, O Lord, and let perpetual light shine upon her.\nKeep her in Your love, always.\nAmen."}},
+  workToday:{vi:{title:'Lời cầu nguyện cho công việc — 16/11',body:'Lạy Chúa Giêsu,\nHôm nay chúng con mang đến trước Chúa những lo lắng và khó khăn trong công việc.\nXin ban cho chúng con một tâm trí sáng suốt để nhận ra điều đúng, một trái tim bình an khi đối diện áp lực, và lòng can đảm để giải quyết từng vấn đề.\nXin giúp mọi sự hiểu lầm được tháo gỡ bằng sự chân thành; giúp những cuộc trò chuyện khó khăn diễn ra trong sự tôn trọng và công bằng.\nXin hướng dẫn chúng con tìm ra giải pháp tốt đẹp, biết nhận trách nhiệm khi cần và biết tha thứ khi có tổn thương.\nXin che chở những người đang lo lắng cho công việc, và ban sức mạnh để chúng con không bỏ cuộc.\nDù hôm nay chưa thể giải quyết tất cả, xin cho chúng con có hy vọng và từng bước tiến về phía bình an.\nChúng con phó thác công việc và những điều chưa thể kiểm soát trong tay Chúa.\nAmen.'},en:{title:'Prayer for work difficulties — Nov 16',body:'Lord Jesus,\nToday we bring You every worry and difficulty we are facing at work.\nPlease give us clarity to see what is right, peace in moments of pressure, and courage to address each problem one step at a time.\nHelp misunderstandings be resolved with honesty, and guide difficult conversations toward respect, fairness, and understanding.\nShow us practical solutions. Teach us to take responsibility when needed, to be patient with others, and to forgive where there has been hurt.\nProtect everyone who feels anxious about their work, and give us strength not to give up.\nEven if everything cannot be fixed today, renew our hope and guide us toward peace.\nWe place our work, our efforts, and everything beyond our control in Your hands.\nAmen.'}},
+ together:{vi:{title:'Cầu nguyện cùng nhau',body:'Lạy Chúa,\nHôm nay, dù chúng con đang ở hai nơi khác nhau,\nchúng con xin cùng đến trước mặt Ngài.\nXin ở bên Thảo, ban cho cô ấy sức khỏe, sự bình an và niềm vui.\nXin giúp Varun biết yêu thương bằng sự kiên nhẫn và lòng chân thành.\nXin giữ gìn gia đình và những người chúng con yêu quý.\nDẫn chúng con đi qua những ngày xa cách,\nđể mỗi ngày chúng con biết gần nhau hơn trong sự thấu hiểu.\nAmen.'},en:{title:'A prayer for us',body:'Dear Lord,\nToday, even while we are in two different places,\nwe come together in prayer before You.\nPlease stay beside Thảo. Give her health, peace, and joy.\nHelp Varun love with patience, kindness, and sincerity.\nWatch over our families and the people we cherish.\nGuide us through the days we spend apart,\nand help us grow closer through understanding.\nAmen.'}},
+ cross:{vi:{title:'Làm dấu Thánh Giá',body:'Nhân danh Cha, và Con, và Thánh Thần.\nAmen.'},en:{title:'Sign of the Cross',body:'In the name of the Father, and of the Son, and of the Holy Spirit.\nAmen.'}},
+ ourfather:{vi:{title:'Kinh Lạy Cha',body:'Lạy Cha chúng con ở trên trời,\nchúng con nguyện danh Cha cả sáng,\nnước Cha trị đến,\ný Cha thể hiện dưới đất cũng như trên trời.\nXin Cha cho chúng con hôm nay lương thực hằng ngày,\nvà tha nợ chúng con,\nnhư chúng con cũng tha kẻ có nợ chúng con.\nXin chớ để chúng con sa chước cám dỗ,\nnhưng cứu chúng con cho khỏi sự dữ.\nAmen.'},en:{title:'Our Father',body:'Our Father, who art in heaven,\nhallowed be Thy name.\nThy kingdom come, Thy will be done\non earth as it is in heaven.\nGive us this day our daily bread,\nand forgive us our trespasses,\nas we forgive those who trespass against us.\nAnd lead us not into temptation,\nbut deliver us from evil.\nAmen.'}},
+ hailmary:{vi:{title:'Kinh Kính Mừng',body:'Kính mừng Maria đầy ơn phúc, Đức Chúa Trời ở cùng Bà.\nBà có phúc lạ hơn mọi người nữ,\nvà Giêsu Con lòng Bà gồm phúc lạ.\nThánh Maria Đức Mẹ Chúa Trời,\ncầu cho chúng con là kẻ có tội,\nkhi nay và trong giờ lâm tử.\nAmen.'},en:{title:'Hail Mary',body:'Hail Mary, full of grace, the Lord is with thee.\nBlessed art thou among women,\nand blessed is the fruit of thy womb, Jesus.\nHoly Mary, Mother of God,\npray for us sinners,\nnow and at the hour of our death.\nAmen.'}},
+ glory:{vi:{title:'Kinh Sáng Danh',body:'Sáng danh Đức Chúa Cha,\nvà Đức Chúa Con, và Đức Chúa Thánh Thần.\nNhư đã có trước vô cùng,\nvà bây giờ, và hằng có,\nvà đời đời chẳng cùng.\nAmen.'},en:{title:'Glory Be',body:'Glory be to the Father,\nand to the Son, and to the Holy Spirit.\nAs it was in the beginning, is now,\nand ever shall be, world without end.\nAmen.'}},
+ communion:{vi:{title:'Lời nguyện rước lễ thiêng liêng',body:'Lạy Chúa Giêsu,\ncon tin Ngài thật sự hiện diện trong Bí tích Thánh Thể.\nCon yêu mến Chúa và khao khát được đến gần Ngài.\nKhi con chưa thể rước lễ,\nxin ở cùng con cách thiêng liêng,\nđể lòng con luôn biết hướng về Ngài.\nXin gìn giữ con trong tình yêu của Chúa.\nAmen.'},en:{title:'A prayer for spiritual communion',body:'My Jesus,\nI believe that You are truly present in the Holy Eucharist.\nI love You and long to draw near to You.\nWhen I cannot receive Holy Communion,\nplease be with me spiritually.\nKeep my heart turned toward You,\nand hold me always in Your love.\nAmen.'}}
+};
+function tr(key){return t[lang][key]||key}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function formatTime(m){return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')}
+function vietnamNow(){const dt=new Date(Date.now()+7*3600000);return {pseudo:dt,day:dt.getUTCDay(),minute:dt.getUTCHours()*60+dt.getUTCMinutes(),date:dt.getUTCDate(),month:dt.getUTCMonth(),year:dt.getUTCFullYear(),secs:dt.getUTCSeconds()}}
+function getNext(now){let best=null, active=null;for(let d=0;d<8;d++){let day=(now.day+d)%7;for(const minute of SCHEDULE[day]){const delta=d*1440+minute-now.minute-now.secs/60;if(delta>=0 && (!best||delta<best.delta)) best={day,minute,delta};if(d===0 && delta<=0 && delta>=-60)active={day,minute,delta};}}return {best,active}}
+// The daily GitHub Actions check writes this same-origin JSON file.
+// On failure, keep the embedded parish timetable instead of showing invented times.
+function syncStatusText(){
+ if(location.protocol==='file:')return tr('syncOffline');
+ const checked=scheduleSync.checkedAt;
+ if(!checked)return tr('syncInitial');
+ const stamp=Date.parse(checked);
+ if(!Number.isFinite(stamp))return tr('syncInitial');
+ const label=new Intl.DateTimeFormat(lang==='vi'?'vi-VN':'en-GB',{
+  timeZone:'Asia/Ho_Chi_Minh',year:'numeric',month:'short',day:'numeric',
+  hour:'2-digit',minute:'2-digit',hour12:false
+ }).format(new Date(stamp))+' (VN)';
+ const age=Date.now()-stamp;
+ if(age>72*60*60*1000)return tr('syncStale')+': '+label;
+ if(scheduleSync.fetchFailed)return tr('syncUnreachable')+': '+label;
+ return tr('syncFresh')+': '+label;
+}
+async function loadMassSchedule(){
+ if(location.protocol==='file:'){$('scheduleFreshness').textContent=syncStatusText();return}
+ try{
+  const r=await fetch('./mass-schedule.json?refresh='+Date.now(),{cache:'no-store'});
+  if(!r.ok)throw new Error('Schedule file not available');
+  const data=await r.json();
+  if(data.schema_version!==1||data.timezone!=='Asia/Ho_Chi_Minh'||!data.weekly)throw new Error('Unexpected schedule format');
+  const weekly={};
+  for(let day=0;day<7;day++){
+   const times=data.weekly[String(day)];
+   if(!Array.isArray(times)||times.length<1||times.length>10||!times.every(m=>Number.isInteger(m)&&m>=0&&m<1440))throw new Error('Invalid Mass times');
+   weekly[day]=[...new Set(times)].sort((a,b)=>a-b);
+  }
+  SCHEDULE=weekly;
+  scheduleSync={checkedAt:data.last_checked_at||null,loaded:true,fetchFailed:false};
+ }catch(e){scheduleSync.fetchFailed=true;console.warn('Could not load updated Mass schedule:',e.message)}
+ updateClock();
+ if(currentPanel==='schedule'||currentPanel==='mass')renderPanel(currentPanel);
+}
+let wasActive=false;
+const DAILY_THEMES=[
+{"vi":{"title":"Bình an","body":"Xin giữ lòng chúng con bình an giữa những điều chưa chắc chắn. Xin giúp chúng con mang sự dịu dàng đến cho nhau."},"en":{"title":"Peace","body":"Keep our hearts peaceful amid uncertainty. Help us bring gentleness to each other."}},
+{"vi":{"title":"Gia đình","body":"Xin giữ gìn gia đình chúng con trong yêu thương. Ban sức khỏe cho cha mẹ và những người thân yêu."},"en":{"title":"Family","body":"Watch over our families in love. Bless our parents and loved ones with health."}},
+{"vi":{"title":"Công việc","body":"Soi sáng chúng con trước khó khăn công việc. Ban sự khôn ngoan để tìm giải pháp công bằng."},"en":{"title":"Work","body":"Guide us through work difficulties. Give us wisdom to find fair solutions."}},
+{"vi":{"title":"Lòng biết ơn","body":"Mở mắt chúng con để thấy ơn lành nhỏ bé mỗi ngày. Dạy chúng con cảm ơn thật lòng."},"en":{"title":"Gratitude","body":"Open our eyes to small daily blessings. Teach us heartfelt gratitude."}},
+{"vi":{"title":"Sức khỏe","body":"Chăm sóc những ai đang đau bệnh hoặc mệt mỏi. Ban cho họ sự nghỉ ngơi và sức mạnh."},"en":{"title":"Health","body":"Care for those who are unwell or tired. Grant them rest and strength."}},
+{"vi":{"title":"Kiên nhẫn","body":"Khi mọi điều diễn ra chậm hơn mong muốn, xin giúp chúng con không nản lòng và luôn tử tế."},"en":{"title":"Patience","body":"When things move slowly, keep us from losing heart and help us stay kind."}},
+{"vi":{"title":"Yêu thương","body":"Xin cho tình yêu của chúng con thể hiện qua những việc nhỏ và sự lắng nghe chân thành."},"en":{"title":"Love","body":"Let our love shine through small acts and sincere listening."}},
+{"vi":{"title":"Tha thứ","body":"Xin chữa lành tổn thương và ban can đảm để xin lỗi, cũng như lòng nhân từ để tha thứ."},"en":{"title":"Forgiveness","body":"Heal our hurts and give us courage to apologize and mercy to forgive."}},
+{"vi":{"title":"Niềm hy vọng","body":"Khi tương lai chưa rõ, xin thắp lên một ngọn đèn hy vọng và dẫn chúng con từng bước."},"en":{"title":"Hope","body":"When the future is unclear, kindle hope and guide us step by step."}},
+{"vi":{"title":"Bình tâm","body":"Xin ôm lấy những lo lắng không thể nói thành lời. Dạy chúng con tin tưởng và thở thật chậm."},"en":{"title":"Calm","body":"Hold our unspoken worries. Teach us to trust and breathe slowly."}},
+{"vi":{"title":"Những người xa nhà","body":"Xin ở cùng những người xa gia đình và người mình yêu. Xin giữ những trái tim được kết nối."},"en":{"title":"Far From Home","body":"Stay with those far from family and loved ones. Keep our hearts connected."}},
+{"vi":{"title":"Sự sáng suốt","body":"Xin giúp chúng con chọn điều đúng thay vì điều dễ, và có can đảm làm theo lương tâm."},"en":{"title":"Wisdom","body":"Help us choose what is right over what is easy, and follow our conscience."}},
+{"vi":{"title":"Niềm vui giản dị","body":"Xin nhắc chúng con mỉm cười trước những món quà bình thường của cuộc sống."},"en":{"title":"Simple Joy","body":"Remind us to smile at life's ordinary gifts."}},
+{"vi":{"title":"An ủi người đau buồn","body":"Xin đến gần những ai đang nhớ người đã khuất. Cho tình yêu và ký ức đẹp an ủi họ."},"en":{"title":"Comfort in Grief","body":"Draw near to those grieving someone they miss. Comfort them with love and cherished memories."}},
+{"vi":{"title":"Sự hòa giải","body":"Xin làm dịu những bất đồng và dạy chúng con lắng nghe trước khi đáp lời."},"en":{"title":"Reconciliation","body":"Soften disagreements and teach us to listen before replying."}},
+{"vi":{"title":"Can đảm","body":"Ban sức mạnh để đối diện điều khó khăn bằng sự trung thực và lòng tin."},"en":{"title":"Courage","body":"Give us strength to face hard things with honesty and faith."}},
+{"vi":{"title":"Giữ gìn nhau","body":"Xin che chở những người chúng con yêu thương trên mọi nẻo đường. Cho họ trở về bình an."},"en":{"title":"Protection","body":"Protect those we love wherever they go. Bring them home safely."}},
+{"vi":{"title":"Khiêm nhường","body":"Dạy chúng con nhận ra sai lầm và lắng nghe góp ý với một trái tim rộng mở."},"en":{"title":"Humility","body":"Teach us to admit mistakes and welcome advice with open hearts."}},
+{"vi":{"title":"Người cần giúp đỡ","body":"Xin ở bên người cô đơn và khó khăn. Mở tay chúng con để biết chia sẻ."},"en":{"title":"Those in Need","body":"Stay beside the lonely and struggling. Open our hands to share."}},
+{"vi":{"title":"Khởi đầu mới","body":"Xin giúp chúng con bắt đầu lại sau một ngày buồn và nhìn thấy cơ hội mới."},"en":{"title":"New Beginnings","body":"Help us begin again after a difficult day and see new possibilities."}},
+{"vi":{"title":"Lòng tin","body":"Khi không thể kiểm soát mọi thứ, xin cho chúng con biết phó thác và làm tốt phần mình."},"en":{"title":"Trust","body":"When we cannot control everything, help us surrender and do our part."}},
+{"vi":{"title":"Tình bạn","body":"Chúc lành cho bạn bè đã ở cạnh chúng con. Dạy chúng con biết quan tâm và giữ lời."},"en":{"title":"Friendship","body":"Bless the friends beside us. Teach us to care and keep our promises."}},
+{"vi":{"title":"Trung thực","body":"Cho lời nói chúng con chân thật và dịu dàng. Dẫn chúng con làm điều ngay thẳng."},"en":{"title":"Honesty","body":"May our words be honest and gentle. Guide us to do what is right."}},
+{"vi":{"title":"Giấc ngủ yên","body":"Xin đỡ lấy gánh nặng cuối ngày và cho chúng con một giấc ngủ bình yên."},"en":{"title":"Restful Sleep","body":"Carry our burdens at day's end and grant us peaceful sleep."}},
+{"vi":{"title":"Tôn trọng","body":"Giúp chúng con tôn trọng khác biệt và nói lời tử tế cả khi không đồng ý."},"en":{"title":"Respect","body":"Help us respect differences and speak kindly even when we disagree."}},
+{"vi":{"title":"Những ước mơ","body":"Xin chúc lành cho ước mơ tốt đẹp và cho chúng con biết kiên trì với lòng nhân hậu."},"en":{"title":"Dreams","body":"Bless our good dreams and help us persevere with kindness."}},
+{"vi":{"title":"Cảm thông","body":"Giúp chúng con nhìn thấy nỗi vất vả người khác chưa nói ra và biết nâng đỡ họ."},"en":{"title":"Compassion","body":"Help us notice struggles others cannot express and offer support."}},
+{"vi":{"title":"Chữa lành","body":"Xin đến gần những trái tim tổn thương vì lời nói hoặc mất mát và ban sự chữa lành."},"en":{"title":"Healing","body":"Draw near to hearts hurt by words or loss, and bring healing."}},
+{"vi":{"title":"Cùng trưởng thành","body":"Xin giúp chúng con yêu thương và thấu hiểu nhau hơn mỗi ngày."},"en":{"title":"Growing Together","body":"Help us love and understand each other more each day."}},
+{"vi":{"title":"Ngày tốt lành","body":"Dẫn đường cho mọi việc chúng con làm và giúp chúng con mang niềm vui đến người khác."},"en":{"title":"A Blessed Day","body":"Guide all we do and help us bring joy to someone else."}},
+{"vi":{"title":"Tạ ơn và phó thác","body":"Cảm ơn những niềm vui và bài học đã qua. Xin giúp chúng con bước tới trong lòng tin."},"en":{"title":"Thanks and Surrender","body":"Thank You for joys and lessons past. Help us move forward in trust."}}
+];
+function refreshDailyPrayer(){
+ const n=vietnamNow(), vi=DAILY_THEMES[n.date-1].vi, en=DAILY_THEMES[n.date-1].en;
+ PRAYERS.daily={vi:{title:'Lời cầu nguyện mỗi ngày · '+vi.title,body:'Lạy Chúa Giêsu,\n'+vi.body+'\nXin ở bên chúng con hôm nay và luôn mãi.\nAmen.'},en:{title:'Daily prayer · '+en.title,body:'Dear Lord Jesus,\n'+en.body+'\nStay with us today and always.\nAmen.'}};
+ $('dailyPrayerEyebrow').textContent=lang==='vi'?'✝ LỜI CẦU NGUYỆN HÔM NAY · GIỜ VIỆT NAM':'✝ TODAY’S PRAYER · VIETNAM TIME';
+ const selected=lang==='vi'?vi:en;
+ $('dailyPrayerHeading').textContent=(lang==='vi'?'Ngày '+n.date+'/'+(n.month+1)+' · ':'Day '+n.date+' · ')+selected.title;
+ $('dailyPrayerBlurb').textContent=lang==='vi'?'Mỗi ngày một lời cầu nguyện mới để mình cùng sẻ chia.':'A fresh prayer every day, to share together.';
+ $('dailyPrayerOpen').textContent=lang==='vi'?'🙏 Cùng cầu nguyện':'🙏 Pray together';
+}
+$('dailyPrayerOpen').addEventListener('click',()=>{refreshDailyPrayer();selectedPrayer='daily';openDrawer('prayers');if(scene==='inside')moveTo('kneel')});
+
+function updateClock(){refreshDailyPrayer();updateSpecialWorkPrayer();updateMemorialPrayer();const n=vietnamNow(), {best,active}=getNext(n);$('clock').textContent=formatTime(n.minute);const dateStr=new Intl.DateTimeFormat(lang==='vi'?'vi-VN':'en-GB',{timeZone:'Asia/Ho_Chi_Minh',weekday:'long',day:'numeric',month:'long'}).format(new Date());$('todayDate').textContent=dateStr;let nextDay=best.delta>=1440?DAY_EN[best.day]:best.day===n.day?tr('today'):tr('tomorrow');if(best.delta>=1440&&lang==='vi')nextDay=DAY_VI[best.day];$('nextMassTime').textContent=nextDay+' · '+formatTime(best.minute);
+ const hours=Math.floor(Math.max(best.delta,0)/60),minutes=Math.ceil(Math.max(best.delta,0)%60);const period=hours?hours+' '+tr('hours')+' '+minutes+' '+tr('mins'):minutes+' '+tr('mins');$('countdown').innerHTML='<span class="status-dot '+(active?'live':'')+'"></span>'+esc(active?tr('now'):tr('coming')+' '+period);
+ const services=SCHEDULE[n.day].map(formatTime).join(' · ');$('todayServices').innerHTML='<b>'+esc(tr('services'))+':</b> '+esc(services)+'<br><span class="insignia">'+esc(tr('sourceLabel'))+'</span>';
+ $('scheduleFreshness').textContent=syncStatusText();$('massBtn').classList.toggle('accent',!!active);if(active&&!wasActive){if(scene==='inside'){showHint(tr('autoBadge'));}if(currentPanel==='mass'){renderPanel('mass')}}wasActive=!!active;
+}
+function translate(){refreshDailyPrayer();updateSpecialWorkPrayer();updateMemorialPrayer();document.documentElement.lang=lang;for(const el of document.querySelectorAll('[data-i18n]')){el.textContent=tr(el.dataset.i18n)}$('btnVI').setAttribute('aria-pressed',String(lang==='vi'));$('btnEN').setAttribute('aria-pressed',String(lang==='en'));$('sceneTitle').textContent=lang==='vi'?'Nhà thờ nhỏ có hình động':'A peaceful animated church';$('sceneDesc').textContent=lang==='vi'?'Varun và Thảo mặc áo in tên, ở sát bên nhau, cùng hướng lên Thánh Giá, ngồi hoặc quỳ cầu nguyện trước bàn thờ với linh mục minh họa.':'Varun and Thảo in name T-shirts stay close together, face the cross, and sit or kneel in prayer before an illustrated altar and priest.';updateClock();if(currentPanel)renderPanel(currentPanel);}
+function changeLang(to){lang=to;safeStore.set('kimhai_lang',lang);stopSpeech();translate()}
+function showHint(text){const el=$('hint');el.textContent=text;el.classList.add('show');clearTimeout(showHint.timer);showHint.timer=setTimeout(()=>el.classList.remove('show'),4500)}
+function showInterior(){scene='inside';$('outside').classList.remove('active');$('outside').classList.add('hidden');$('inside').classList.remove('hidden');$('inside').classList.add('active');$('enterOverlay').hidden=true;$('enterOverlay').style.display='none';$('insideActions').classList.add('show');$('backBtn').classList.add('show');pose='entrance';moveTo('entrance');setTimeout(()=>{if(scene==='inside')moveTo('front')},350);showHint(tr('visit'))}
+function showExterior(){scene='outside';$('inside').classList.remove('active');$('inside').classList.add('hidden');$('outside').classList.add('active');$('outside').classList.remove('hidden');$('enterOverlay').hidden=false;$('enterOverlay').style.display='flex';$('insideActions').classList.remove('show');$('backBtn').classList.remove('show');$('hint').classList.remove('show')}
+let avatarPositions=[[575,739,.92],[629,739,.92]],avatarMoveToken=0;
+function moveTo(where){if(scene!=='inside'){showInterior();return}pose=where;
+ const ids=['innerVarun','innerThao'];
+ const destinations={entrance:[[572,760,.9],[627,760,.9]],front:[[573,515,.77],[627,515,.77]],sit:[[328,551,.69],[382,551,.69]],kneel:[[573,438,.72],[625,438,.72]]};
+ const to=destinations[where]||destinations.front,start=avatarPositions.map(p=>p.slice());
+ for(const id of ids)$(id).classList.remove('sitting','praying');
+ const token=++avatarMoveToken,at=performance.now(),duration=where==='entrance'?0:1450;
+ function paint(now){if(token!==avatarMoveToken||scene!=='inside')return;const x=duration?Math.min(1,(now-at)/duration):1;const ease=1-Math.pow(1-x,3);
+  ids.forEach((id,i)=>{const p=start[i].map((v,j)=>v+(to[i][j]-v)*ease);$(id).setAttribute('transform',`translate(${p[0]} ${p[1]}) scale(${p[2]})`);avatarPositions[i]=p});
+  if(x<1)requestAnimationFrame(paint);else{if(where==='sit')for(const id of ids)$(id).classList.add('sitting');if(where==='kneel')for(const id of ids)$(id).classList.add('praying')}
+ }
+ requestAnimationFrame(paint);
+ if(where==='front')showHint(tr('nearAltar'));if(where==='sit')showHint(tr('seated'));if(where==='kneel')showHint(tr('kneeling'))}
+function openDrawer(panel){currentPanel=panel;$('backdrop').classList.add('show');$('drawer').classList.add('show');$('drawer').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';renderPanel(panel);$('closeDrawer').focus()}
+function closeDrawer(){stopSpeech();currentPanel=null;$('backdrop').classList.remove('show');$('drawer').classList.remove('show');$('drawer').setAttribute('aria-hidden','true');document.body.style.overflow=''}
+function renderPanel(panel){let kicker='',title='',html='';
+ if(panel==='prayers'){kicker=tr('praySub');title=tr('prayTitle');html=`<p class="desc">${esc(tr('prayDesc'))}</p><div class="prayer-list" role="tablist">${Object.keys(PRAYERS).map(key=>`<button class="pray-tab ${selectedPrayer===key?'active':''}" data-prayer="${key}" type="button" role="tab" aria-selected="${selectedPrayer===key}">${esc(PRAYERS[key][lang].title)}</button>`).join('')}</div><article class="paper"><h3>${esc(PRAYERS[selectedPrayer][lang].title)}</h3><div class="prayer-body">${esc(PRAYERS[selectedPrayer][lang].body)}</div><p class="prayer-footnote">✝ ${esc(tr('prayerEnd'))}</p></article><div class="action-row"><button class="primary-btn" id="speakPrayer" type="button">🔊 ${esc(tr('read'))}</button><button class="soft-btn" id="stopPrayer" type="button">■ ${esc(tr('stop'))}</button></div><p class="muted-note">${esc(tr('listenNote'))}</p>`;}
+ if(panel==='candles'){kicker=tr('candleSub');title=tr('candleTitle');html=`<p class="desc">${esc(tr('candleDesc'))}</p><div class="paper"><svg id="bigCandle" class="candle-svg candle-lit" viewBox="0 0 240 190" aria-label="Candle"><ellipse cx="120" cy="163" rx="72" ry="12" fill="#a99678" opacity=".3"/><path d="M95 60H145V157Q120 171 95 157Z" fill="#f4e8c4" stroke="#c3af90" stroke-width="2"/><path d="M120 64V45" stroke="#615645" stroke-width="3"/><path class="candle-big-flame" d="M120 47Q94 21 120 0Q146 22 120 47" fill="#e7a14e"/><path class="candle-big-flame" d="M120 40Q108 25 120 14Q132 26 120 40" fill="#fff2bd"/><path d="M95 66Q120 79 145 66" fill="none" stroke="#dbcca9" stroke-width="3"/></svg><p id="candleStatus" style="text-align:center;color:#57675a;font:17px/1.5 Georgia,serif">${esc(tr('candleOn'))}</p><div class="action-row" style="justify-content:center"><button class="primary-btn" id="candleIntention" type="button">♡ ${esc(tr('intentBtn'))}</button></div></div>`;}
+ if(panel==='intention'){kicker=tr('intentionSub');title=tr('intentionTitle');html=`<p class="desc">${esc(tr('intentionDesc'))}</p><textarea class="intention" id="intentText" maxlength="1500" placeholder="${esc(tr('intentPlace'))}" aria-label="Prayer intention">${esc(safeStore.get('kimhai_intention')||'')}</textarea><div class="action-row"><button class="primary-btn" id="saveIntent" type="button">♡ ${esc(tr('save'))}</button></div><p id="intentStatus" class="muted-note"></p>`;}
+ if(panel==='schedule'){kicker=tr('scheduleSub');title=tr('scheduleTitle');html=`<p class="desc">${esc(tr('scheduleDesc'))}</p><table class="schedule-table"><tbody>${Array.from({length:7},(_,i)=>{const day=(i+1)%7;return `<tr class="${vietnamNow().day===day?'today':''}"><td>${esc(lang==='vi'?DAY_VI[day]:DAY_EN[day])}</td><td>${SCHEDULE[day].map(m=>formatTime(m)).join(' · ')}${day===6?' *':''}</td></tr>`}).join('')}</tbody></table><p class="muted-note">* ${esc(tr('vigil'))}</p><div class="notice">${esc(tr('scheduleNotice'))}</div><p class="muted-note">${esc(syncStatusText())}</p><p class="muted-note">${esc(tr('syncNotice'))}</p><p><a href="https://www.giaophanbaria.org/gioi-thieu/cac-giao-hat/giao-hat-long-huong/2012/12/05/giao-xu-kim-hai.html" target="_blank" rel="noopener">${esc(tr('sourceLabel'))} ↗</a></p>`;}
+ if(panel==='mass'){kicker=tr('massSub');title=tr('massTitle');const n=vietnamNow();const {active,best}=getNext(n);html=`<p class="desc">${esc(tr('massDesc'))}</p><div class="notice">${esc(active?'✝ '+tr('autoBadge'):tr('starts')+' '+formatTime(best.minute)+' ('+(lang==='vi'?DAY_VI[best.day]:DAY_EN[best.day])+', GMT+7)')}</div><div class="stream-panel"><strong>✝ Giáo phận Bà Rịa</strong><p>${esc(tr('liveDisclaimer'))}</p><a class="btn-link" href="${YT}" target="_blank" rel="noopener noreferrer">${esc(tr('yt'))}</a><a class="btn-link alt" href="${LIVE}" target="_blank" rel="noopener noreferrer">${esc(tr('diocese'))}</a><div class="action-row"><button class="soft-btn" id="embedBtn" type="button">▶ ${esc(tr('tryEmbed'))}</button></div><div id="playerSlot"></div><p class="muted-note">${esc(tr('embNote'))}</p></div><div class="action-row"><button class="primary-btn" type="button" id="personalPrayer">📖 ${esc(tr('personal'))}</button></div><p class="muted-note">${esc(tr('noAuto'))}</p>`;}
+ if(panel==='about'){kicker=tr('aboutSub');title=tr('aboutTitle');html=`<p>${esc(tr('aboutDesc'))}</p><div class="notice">${esc(tr('keyboard'))}</div><p><a href="https://www.giaophanbaria.org/gioi-thieu/cac-giao-hat/giao-hat-long-huong/2012/12/05/giao-xu-kim-hai.html" target="_blank" rel="noopener">${esc(tr('aboutLink'))}</a></p>`;}
+ $('drawerKicker').textContent=kicker;$('drawerTitle').textContent=title;$('drawerBody').innerHTML=html;
+}
+function stopSpeech(){if('speechSynthesis' in window){try{speechSynthesis.cancel()}catch(e){}}speaking=false}
+function speakPrayer(){if(!('speechSynthesis' in window)){alert(tr('noSpeech'));return}stopSpeech();const text=PRAYERS[selectedPrayer][lang].body;const utt=new SpeechSynthesisUtterance(text);utt.lang=lang==='vi'?'vi-VN':'en-US';utt.rate=.82;utt.pitch=1;const voices=speechSynthesis.getVoices(),desired=voices.find(v=>v.lang.toLowerCase().startsWith(lang==='vi'?'vi':'en'));if(desired)utt.voice=desired;utt.onend=()=>{speaking=false};speaking=true;speechSynthesis.speak(utt)}
+$('drawerBody').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.prayer){stopSpeech();selectedPrayer=b.dataset.prayer;renderPanel('prayers')}if(b.id==='speakPrayer')speakPrayer();if(b.id==='stopPrayer')stopSpeech();if(b.id==='candleIntention')renderPanel('intention');if(b.id==='saveIntent'){safeStore.set('kimhai_intention',$('intentText').value);$('intentStatus').textContent=tr('saved')}if(b.id==='personalPrayer'){selectedPrayer='together';renderPanel('prayers')}if(b.id==='embedBtn'){const slot=$('playerSlot');if(slot.children.length){slot.innerHTML='';b.textContent='▶ '+tr('tryEmbed')}else{slot.innerHTML='<div class="embed-wrap"><iframe title="Official Diocese of Bà Rịa live video if available" src="https://www.youtube-nocookie.com/embed/live_stream?channel=UCVghYtE1Qwv0mxMWvmR8Z2w" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>';b.textContent='× '+tr('hideEmbed')}}});
+$('btnVI').addEventListener('click',()=>changeLang('vi'));$('btnEN').addEventListener('click',()=>changeLang('en'));$('infoBtn').addEventListener('click',()=>openDrawer('about'));$('brandLink').addEventListener('click',e=>{e.preventDefault();showExterior()});$('enterBtn').addEventListener('click',showInterior);$('doorHit').addEventListener('click',showInterior);$('doorHit').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showInterior()}});$('backBtn').addEventListener('click',showExterior);$('walkBtn').addEventListener('click',()=>moveTo('front'));$('sitBtn').addEventListener('click',()=>moveTo('sit'));$('kneelBtn').addEventListener('click',()=>moveTo('kneel'));$('bellBtn').addEventListener('click',()=>{try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;const ctx=new AC();[[659,0],[988,.18],[784,.33]].forEach(([freq,when])=>{const osc=ctx.createOscillator(),gain=ctx.createGain(),start=ctx.currentTime+when;osc.type='sine';osc.frequency.value=freq;gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(.075,start+.015);gain.gain.exponentialRampToValueAtTime(.0001,start+2.2);osc.connect(gain).connect(ctx.destination);osc.start(start);osc.stop(start+2.24)});setTimeout(()=>ctx.close(),3100)}catch(e){}});$('pewClick').addEventListener('click',()=>moveTo('sit'));$('pewClick').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();moveTo('sit')}});
+function updateMemorialPrayer(){const now=vietnamNow();const isMemorialDay=now.year===2026&&now.month===10&&now.date===17;$('memorialPrayerDay').hidden=!isMemorialDay;if(!isMemorialDay)return;const vi=lang==='vi';$('memorialPrayerEyebrow').textContent=vi?'🕯 LỜI CẦU NGUYỆN TƯỞNG NHỚ · 17/11/2026':'🕯 MEMORIAL PRAYER · 17 NOVEMBER 2026';$('memorialPrayerHeading').textContent=vi?'Tưởng nhớ Nguyễn Mộc Cát Tiên':'Remembering Nguyễn Mộc Cát Tiên';$('memorialPrayerBlurb').textContent=vi?'Tưởng nhớ cô bé Cát Tiên, ra đi khi tuổi đời còn rất nhỏ. Nguyện em được bình an trong vòng tay Chúa.':'In loving memory · 2023. A gentle prayer for a beloved child and those who miss her.';$('memorialPrayerOpen').textContent=vi?'🙏 Cầu nguyện cho bé Cát Tiên':'🙏 Pray for Cát Tiên'}
+$('memorialPrayerOpen').addEventListener('click',()=>{selectedPrayer='memorialCatTien';openDrawer('prayers');if(scene==='inside')moveTo('kneel')});
+function updateSpecialWorkPrayer(){const vnDate=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Ho_Chi_Minh',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());const today=vnDate==='2026-11-16';$('workPrayerToday').hidden=!today;if(!today)return;$('workPrayerEyebrow').textContent=lang==='vi'?'✝ LỜI CẦU NGUYỆN HÔM NAY · 16/11':'✝ SPECIAL PRAYER · 16 NOVEMBER';$('workPrayerHeading').textContent=lang==='vi'?'Cầu xin bình an và giải pháp cho công việc':'A prayer for peace and solutions at work';$('workPrayerBlurb').textContent=lang==='vi'?'Xin cho những khó khăn trong công việc được tháo gỡ bằng sự khôn ngoan, kiên nhẫn và công bằng.':'For clarity, patience, and fair solutions to every work difficulty.';$('workPrayerOpen').textContent=lang==='vi'?'🙏 Đọc lời cầu nguyện hôm nay':'🙏 Read today’s prayer'}
+$('workPrayerOpen').addEventListener('click',()=>{selectedPrayer='workToday';openDrawer('prayers')});
+$('prayersBtn').addEventListener('click',()=>openDrawer('prayers'));$('voiceBtn').addEventListener('click',()=>openDrawer('prayers'));$('candlesBtn').addEventListener('click',()=>openDrawer('candles'));$('intentionBtn').addEventListener('click',()=>openDrawer('intention'));$('scheduleBtn').addEventListener('click',()=>openDrawer('schedule'));$('massBtn').addEventListener('click',()=>openDrawer('mass'));$('closeDrawer').addEventListener('click',closeDrawer);$('backdrop').addEventListener('click',closeDrawer);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&currentPanel)closeDrawer()});
+$('flamesMini').setAttribute('opacity','1');
+translate();loadMassSchedule();setInterval(updateClock,20000);setInterval(loadMassSchedule,30*60*1000);
+})();
+</script>
+</body>
+</html>
