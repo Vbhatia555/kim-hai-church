@@ -182,19 +182,20 @@ async function init3D(){
  [-13,-10,-7,7,10,13].forEach((x,i)=>{tree(x,13-(i%3)*5,.75+(i%2)*.3);tree(x,0-(i%2)*6,.85)});
  // Church foundation and entrance: interpretation, not claimed exact measured architecture.
  box(14,.3,19,0,.01,-16,stoneEdge);
- box(1.1,5.7,.6,-6.45,2.9,-7.05,wall);box(1.1,5.7,.6,6.45,2.9,-7.05,wall);
- box(4.6,5.7,.65,-3.65,2.9,-7.05,wall);box(4.6,5.7,.65,3.65,2.9,-7.05,wall);
- box(3,1.8,.7,0,5.15,-7.05,wall);box(14,1,19,0,6.15,-16,trim);
+ const frontPieces=[];
+ frontPieces.push(box(1.1,5.7,.6,-6.45,2.9,-7.05,wall),box(1.1,5.7,.6,6.45,2.9,-7.05,wall));
+ frontPieces.push(box(4.6,5.7,.65,-3.65,2.9,-7.05,wall),box(4.6,5.7,.65,3.65,2.9,-7.05,wall));
+ frontPieces.push(box(3,1.8,.7,0,5.15,-7.05,wall));const eaves=box(14,1,19,0,6.15,-16,trim);
  box(.7,5.6,19,-6.65,2.8,-16,wall);box(.7,5.6,19,6.65,2.8,-16,wall);box(14,5.8,.65,0,2.9,-25.35,wall);
  // Sculpted roof planes can fade out indoors to keep altar and characters visible.
  const roofs=[];
  for(const side of [-1,1]){const r=box(7.6,.45,19,side*3.5,8.15,-16,roof);r.rotation.z=side*-.37;roofs.push(r)}
- const belfry=box(2.7,4.4,3.0,0,9.7,-7.0,wall);const cap=cone(2.5,2.5,0,13.2,-7.0,roof);roofs.push(cap);
- box(.12,1.6,.12,0,15.2,-7,bronze);box(1.15,.12,.12,0,15.58,-7,bronze);
+ const belfry=box(2.7,4.4,3.0,0,9.7,-7.0,wall);const cap=cone(2.5,2.5,0,13.2,-7.0,roof);roofs.push(cap,belfry,eaves);
+ roofs.push(box(.12,1.6,.12,0,15.2,-7,bronze),box(1.15,.12,.12,0,15.58,-7,bronze));
  // Front pointed arch, open door and decorative windows.
- for(let side of [-1,1]){box(.16,3.65,.16,side*1.62,1.85,-6.61,trim);box(.55,2.6,.11,side*4.6,2.7,-6.68,glass);box(.69,.12,.14,side*4.6,4.08,-6.6,trim);
+ for(let side of [-1,1]){frontPieces.push(box(.16,3.65,.16,side*1.62,1.85,-6.61,trim),box(.55,2.6,.11,side*4.6,2.7,-6.68,glass),box(.69,.12,.14,side*4.6,4.08,-6.6,trim));
  for(let z of [-12,-18,-22]){box(.13,2.3,.85,side*6.23,3.6,z,glass)}}
- box(3.3,.14,.2,0,3.76,-6.65,trim);box(.22,3.4,.2,0,1.7,-25.03,gold);box(1.7,.24,.2,0,2.5,-25.02,gold);
+ frontPieces.push(box(3.3,.14,.2,0,3.76,-6.65,trim));box(.22,3.4,.2,0,1.7,-25.03,gold);box(1.7,.24,.2,0,2.5,-25.02,gold);
  // Interior altar, benches, open Bible and permanent votive flames.
  box(3.7,.17,1.55,0,1.25,-22,stone);for(const x of [-1.5,1.5])box(.25,1.2,1.15,x,.62,-22,trim);
  box(.7,.05,.48,-.1,1.38,-21.7,wax);box(.67,.04,.47,.55,1.4,-21.7,wax);
@@ -231,9 +232,9 @@ async function init3D(){
   const bob=moving?Math.sin(now*.015)*.07:Math.sin(now*.0013)*.017;
   a.position.set(pos.x-.31,bob,pos.z);b.position.set(pos.x+.31,bob,pos.z+.2);
   if(moving){const theta=Math.atan2(goal.x-pos.x,-(goal.z-pos.z));a.rotation.y=b.rotation.y=theta}
-  const indoor=pos.z<-6.5;roofs.forEach(r=>r.visible=!indoor);
-  const targetCam=new THREE.Vector3(pos.x+5.8,indoor?6.3:10.4,pos.z+(indoor?8.8:15));camera.position.lerp(targetCam,1-Math.pow(.04,dt*3));
-  const aim=new THREE.Vector3(pos.x,indoor?1.9:1.7,pos.z-(indoor?5.3:9));camera.lookAt(aim);
+  const indoor=pos.z<-8.2;roofs.forEach(r=>r.visible=!indoor);frontPieces.forEach(r=>r.visible=!indoor);
+  const targetCam=new THREE.Vector3(pos.x+(indoor?2.5:5.8),indoor?4.3:10.4,pos.z+(indoor?3.0:15));camera.position.lerp(targetCam,1-Math.pow(.018,dt*4.8));
+  const aim=new THREE.Vector3(pos.x,indoor?2.15:1.7,pos.z-(indoor?4.2:9));camera.lookAt(aim);
   renderer.render(scene,camera);
   if(now-lastMarker>180){lastMarker=now;updateMarkers()}
  }
