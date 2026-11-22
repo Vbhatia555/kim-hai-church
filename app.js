@@ -152,7 +152,7 @@ function bindUI(){
  document.querySelectorAll('[data-go]:not([data-marker])').forEach(b=>b.onclick=()=>navigate(b.dataset.go));
  $('entranceMassOpen').onclick=()=>navigate('board');
  $('sheetClose').onclick=closePanel;$('scrim').onclick=closePanel;
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(currentPanel)closePanel();else closePlaces();return}if(currentPanel||['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement?.tagName))return;if(!m3?.active)return;const dir={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]}[e.key];if(dir){e.preventDefault();pos.x=Math.max(-13,Math.min(13,pos.x+dir[0]*1.5));pos.z=Math.max(-22,Math.min(19,pos.z+dir[1]*1.5));goal.x=pos.x;goal.z=pos.z;moving=false}});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(currentPanel)closePanel();else closePlaces();return}if(currentPanel||['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))return;if(!m3?.active)return;const dir={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]}[e.key];if(dir){e.preventDefault();pos.x=Math.max(-13,Math.min(13,pos.x+dir[0]*1.5));pos.z=Math.max(-22,Math.min(19,pos.z+dir[1]*1.5));goal.x=pos.x;goal.z=pos.z;moving=false}});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)stopSpeech();else checkVietnamMidnight()});
 }
 async function init3D(){
