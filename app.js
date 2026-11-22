@@ -12,7 +12,9 @@ let lang=STORE.get('lang','vi')==='en'?'en':'vi', soundOn=false, soundContext=nu
 let schedule=null, dateOverrides={}, datedIntents={'2026-11-16':'workToday','2026-11-17':'memorialCatTien'}, candleState=STORE.get('candles',[false,false,false,false,false]), rosaryStep=Math.max(0,Math.min(11,Number(STORE.get('rosary',0))||0));
 let prayerCacheKey='', lastVNDate='', toastTimeout=0, lastFocus=null;
 const PLACES={gate:{x:0,z:17,head:'headGate',hint:'hintGate'},door:{x:0,z:-6.4,head:'headDoor',hint:'hintDoor'},altar:{x:0,z:-17.4,head:'headAltar',hint:'hintAltar'},candle:{x:-3.1,z:-14.7,head:'headCandle',hint:'hintCandle'},garden:{x:9,z:-3.5,head:'headGarden',hint:'hintGarden'},board:{x:-8,z:4.2,head:'headBoard',hint:'hintBoard'}};
-const pos={x:0,z:17}, goal={x:0,z:17,place:'gate'}, fallbackPos={gate:[50,91],door:[50,43],altar:[50,76],candle:[50,80],garden:[79,67],board:[21,67]};
+const pos={x:0,z:17}, goal={x:0,z:17,place:'gate'};let walkFrom={x:0,z:17},walkStart=0,walkDuration=0;
+function beginWalk(){walkFrom={x:pos.x,z:pos.z};walkStart=performance.now();walkDuration=Math.min(3200,Math.max(500,Math.hypot(goal.x-pos.x,goal.z-pos.z)*78));moving=true}
+const fallbackPos={gate:[50,91],door:[50,43],altar:[50,76],candle:[50,80],garden:[79,67],board:[21,67]};
 const dayNameVi=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];
 const dayNameEn=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 function tr(k){return COPY[lang][k] || k}
@@ -125,7 +127,7 @@ function stopSpeech(){if('speechSynthesis'in window)speechSynthesis.cancel()}
 function chime(freq=610){if(!soundOn)return;try{soundContext ||= new (window.AudioContext||window.webkitAudioContext)();soundContext.resume();const o=soundContext.createOscillator(),g=soundContext.createGain(),t=soundContext.currentTime;o.type='sine';o.frequency.setValueAtTime(freq,t);o.frequency.exponentialRampToValueAtTime(freq*.84,t+.7);g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(.045,t+.03);g.gain.exponentialRampToValueAtTime(.001,t+1.5);o.connect(g).connect(soundContext.destination);o.start(t);o.stop(t+1.6)}catch{}}
 function bird(){if(!soundOn)return;try{soundContext ||= new(window.AudioContext||window.webkitAudioContext)();soundContext.resume();const t=soundContext.currentTime;for(let n=0;n<3;n++){const o=soundContext.createOscillator(),g=soundContext.createGain();o.type='sine';o.frequency.setValueAtTime(1500+n*140,t+n*.18);o.frequency.exponentialRampToValueAtTime(2650+n*100,t+n*.25);o.frequency.exponentialRampToValueAtTime(1300,t+n*.35);g.gain.setValueAtTime(.001,t+n*.18);g.gain.linearRampToValueAtTime(.018,t+n*.21);g.gain.exponentialRampToValueAtTime(.001,t+n*.37);o.connect(g).connect(soundContext.destination);o.start(t+n*.18);o.stop(t+n*.39)}}catch{}}
 function toggleSound(){soundOn=!soundOn;clearInterval(chirpTimer);if(soundOn){chime(540);setTimeout(bird,700);chirpTimer=setInterval(bird,6600)}else{soundContext?.suspend?.()}updateLocale()}
-function navigate(place){if(!PLACES[place])return;closePlaces();if(currentPanel)closePanel();setPlace(place);goal.x=PLACES[place].x;goal.z=PLACES[place].z;goal.place=place;moving=true;toast(tr('coming')+' '+tr(place));
+function navigate(place){if(!PLACES[place])return;closePlaces();if(currentPanel)closePanel();setPlace(place);goal.x=PLACES[place].x;goal.z=PLACES[place].z;goal.place=place;beginWalk();toast(tr('coming')+' '+tr(place));
  if(!m3?.active){paintFallback(place);if(['altar','candle','garden','board'].includes(place))setTimeout(()=>openPanel(place),450);moving=false;return}
  if(matchMedia('(prefers-reduced-motion: reduce)').matches){pos.x=goal.x;pos.z=goal.z;moving=false;m3?.onArrival?.(place);if(['altar','candle','garden','board'].includes(place))openPanel(place)}
 }
@@ -220,15 +222,15 @@ async function init3D(){
  const plane=new THREE.Plane(new THREE.Vector3(0,1,0),0),ray=new THREE.Raycaster(),pointer=new THREE.Vector2(),vec=new THREE.Vector3();
  const clock=new THREE.Clock();let last=performance.now();
  function resize(){const w=stage.clientWidth,h=stage.clientHeight;if(w<=0||h<=0)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.fov=w<700?56:48;camera.updateProjectionMatrix();updateMarkers()}window.addEventListener('resize',resize,{passive:true});
- renderer.domElement.addEventListener('pointerup',e=>{if(currentPanel||Math.abs(e.movementX)>10)return;const rect=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.ray.intersectPlane(plane,vec);if(hit){goal.x=Math.max(-12,Math.min(12,vec.x));goal.z=Math.max(-22,Math.min(18,vec.z));goal.place='';moving=true}});
+ renderer.domElement.addEventListener('pointerup',e=>{if(currentPanel||Math.abs(e.movementX)>10)return;const rect=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.ray.intersectPlane(plane,vec);if(hit){goal.x=Math.max(-12,Math.min(12,vec.x));goal.z=Math.max(-22,Math.min(18,vec.z));goal.place='';beginWalk()}});
  function project(x,z){const p=new THREE.Vector3(x,2.5,z).project(camera);return{x:(p.x*.5+.5)*stage.clientWidth,y:(-p.y*.5+.5)*stage.clientHeight,visible:p.z>-1&&p.z<1&&p.x>-1.3&&p.x<1.3&&p.y>-1.3&&p.y<1.3}}
  let lastMarker=0;
  function frame(){
   if(!document.body.contains(renderer.domElement))return;
   requestAnimationFrame(frame);
-  const now=performance.now(),dt=Math.min(.06,(now-last)/1000||.016);last=now;
+  const now=performance.now(),dt=Math.min(.25,(now-last)/1000||.016);last=now;
   if(!m3.active)return;
-  if(moving){const dx=goal.x-pos.x,dz=goal.z-pos.z,dist=Math.hypot(dx,dz);if(dist<.18){pos.x=goal.x;pos.z=goal.z;moving=false;const place=goal.place;if(place){setPlace(place);if(['altar','candle','garden','board'].includes(place)&&!currentPanel)openPanel(place);if(place==='door')toast(tr('hintDoor'))}}else{const step=Math.min(dist,dt*9);pos.x+=dx/dist*step;pos.z+=dz/dist*step}}
+  if(moving){const t=Math.min(1,(now-walkStart)/walkDuration),ease=t*t*(3-2*t);pos.x=walkFrom.x+(goal.x-walkFrom.x)*ease;pos.z=walkFrom.z+(goal.z-walkFrom.z)*ease;if(t>=1){pos.x=goal.x;pos.z=goal.z;moving=false;const place=goal.place;if(place){setPlace(place);if(['altar','candle','garden','board'].includes(place)&&!currentPanel)openPanel(place);if(place==='door')toast(tr('hintDoor'))}}}
   const bob=moving?Math.sin(now*.015)*.07:Math.sin(now*.0013)*.017;
   a.position.set(pos.x-.31,bob,pos.z);b.position.set(pos.x+.31,bob,pos.z+.2);
   if(moving){const theta=Math.atan2(goal.x-pos.x,-(goal.z-pos.z));a.rotation.y=b.rotation.y=theta}
