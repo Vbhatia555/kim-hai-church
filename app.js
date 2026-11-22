@@ -160,6 +160,7 @@ async function init3D(){
  let THREE;
  try{THREE=await import('https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js')}catch(e){console.warn('Using illustrated scene; 3D library unavailable.',e);return}
  if(illustrationOnly)return;
+ try {
  const stage=$('webglStage'),width=stage.clientWidth,height=stage.clientHeight,scene=new THREE.Scene();scene.background=new THREE.Color(0xb4c8c0);scene.fog=new THREE.FogExp2(0xb4c8c0,.016);
  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.7));renderer.setSize(width,height);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;renderer.shadowMap.enabled=false;stage.appendChild(renderer.domElement);
  const camera=new THREE.PerspectiveCamera(width<700?53:48,width/height,.1,150);camera.position.set(8,13,32);camera.lookAt(0,1,4);
