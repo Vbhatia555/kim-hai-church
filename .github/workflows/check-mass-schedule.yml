@@ -50,10 +50,14 @@ jobs:
             git commit -m 'chore: verify Kim Hai Mass schedule'
             git push
           fi
+      - name: Verify website JavaScript
+        run: |
+          node --check app.js
+          node --check prayer-data.js
       - name: Prepare public site
         run: |
           mkdir -p public
-          cp index.html mass-schedule.json public/
+          cp index.html style.css app.js prayer-data.js mass-schedule.json mass-date-overrides.json special-intentions.json public/
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
