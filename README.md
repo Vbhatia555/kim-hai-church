@@ -1,55 +1,88 @@
-# Nhà thờ Kim Hải — Varun & Thảo's virtual church
+# Nhà thờ Kim Hải · A little place of peace
 
-An illustrated, bilingual (Vietnamese / English) prayer website. The characters,
-prayer space, candles and priest work without internet. Mass-time updates require
-**GitHub Pages** and the included **GitHub Actions** scheduled workflow.
+A walkable, bilingual (Vietnamese / English) virtual Catholic church for Thảo and Varun, inspired by the quiet visitor journey of Sansa Temple. This is an **independent, original illustration inspired by Kim Hải parish**, not a digital replica or an official parish product.
 
-## What's automatic?
+**Live website:** https://vbhatia555.github.io/kim-hai-church/
 
-- Vietnam clock, today's recurring Mass times and countdown: update automatically while the page is open.
-- Published recurring parish Mass schedule: checked at **07:17 and 19:17 Vietnam time** every day using GitHub Actions, and `mass-schedule.json` updated after every *successful* check.
-- The site checks the latest JSON when opened and every 30 minutes while left open.
-- The website warns if a check is overdue by more than 72 hours. The previous schedule is retained on error.
-- The source is https://www.giaophanbaria.org/gioi-thieu/cac-giao-hat/giao-hat-long-huong/2012/12/05/giao-xu-kim-hai.html
+## The journey
 
-**Important:** The parish page has an ordinary weekly schedule, not a reliable calendar of Mass cancellations, feast-day services, funerals, or last-minute changes. The system can detect **only changes published on this specific official page**. This is not a promise of correct special-day Mass times. Dates and last-check information describe *our check*, not when the parish last changed its listing.
+1. Enter through the gate and follow the stone path toward the open church doorway.
+2. Visit the **altar** for today's prayer, which uses the calendar date in `Asia/Ho_Chi_Minh`. Special intentions matching that date take priority. Existing bilingual prayers and the memorial for Nguyễn Mộc Cát Tiên are retained.
+3. At the **candle stand**, light an unlit candle and optionally write a name or intention. This is stored **only in the visitor's own browser**, never uploaded to the site or GitHub. Candles stay lit when they revisit from that device.
+4. Visit the **rosary garden** for the Our Father, 10 Hail Marys and Glory Be. The selected bead persists on the device.
+5. At the **noticeboard**, see the existing parish weekly Mass times. The entrance always displays today's regular timetable too.
 
-The diocesan site has another, older table listing Monday and Friday 17:30 services, while the parish page does not. This website prioritizes the parish page. Contact the parish to confirm those evening services.
+### Controls
 
-## How to publish on GitHub Pages
+- **Phone:** Tap a destination marker or one of the fixed bottom buttons; use **Places / Địa điểm** to jump between destinations.
+- **Desktop:** Click the courtyard ground to walk, use the arrow keys, or tap destinations.
+- The camera follows the two illustrated companions. With **Reduce Motion** enabled, destination changes are immediate.
+- The environment loads a lightweight original 3D scene using Three.js from a CDN if WebGL and the connection allow it. **The illustrated SVG fallback always remains usable**; use the ◫ button to switch manually.
+- Sound is **off by default**. The music-note button enables generated birdsong and soft chimes (no audio file or autoplay).
+- VI / EN selection is remembered for repeat visits.
 
-1. Create a public repository on GitHub, e.g. `kim-hai-church`.
-2. Upload **all the files and folders from this ZIP**, retaining their locations:
-   - `index.html`
-   - `mass-schedule.json`
-   - `update_mass_schedule.py`
-   - `.github/workflows/check-mass-schedule.yml` (note: `.github` is hidden in macOS Finder)
-3. If your browser misses the hidden `.github` folder, create the workflow manually on GitHub: click **Add file → Create new file**, type `.github/workflows/check-mass-schedule.yml` as the filename and paste the workflow file contents, then commit. Make sure `update_mass_schedule.py` and `mass-schedule.json` are uploaded too.
-4. Open **Settings → Pages → Build and deployment**, choose **GitHub Actions** as the publishing source (NOT "Deploy from a branch"). The included workflow deploys the website directly every time it runs.
-5. Open the repository's **Actions** tab. Enable workflows if prompted. Select **Update Mass schedule and publish virtual church → Run workflow → Run workflow** once to test immediately. The workflow also publishes automatically when you manually change files on the `main` branch.
-6. Check that `mass-schedule.json` now contains a non-null `last_checked_at` after a successful run. That same workflow publishes the new schedule to the live site, because GitHub Actions bot commits by themselves do NOT trigger regular branch-based Pages rebuilds. If the run failed, inspect its Actions job log: the diocesan website may be unavailable or block automated fetches.
-7. The published site is `https://YOUR_USERNAME.github.io/kim-hai-church/` (replace `YOUR_USERNAME`).
+There are no parish photographs in the repository. The building uses original stylized architecture, with a Vietnamese church silhouette, trees, a bell tower and warm afternoon light. Please add actual licensed Kim Hải reference photos to a future art revision if you want more exact fidelity.
 
-If you edit the workflow later, the scheduled check only runs if the YAML file is present on the repository's default branch. GitHub can delay scheduled jobs, and may disable them after prolonged repository inactivity. Check the Actions tab if the site flags an old check.
+## How to edit
 
-## Local preview
+| File | What it controls |
+|---|---|
+| `index.html` | Structure, original illustration fallback and interface buttons |
+| `style.css` | Colors, typography, responsive layouts and sheet styling |
+| `app.js` | Walking, camera, 3D objects, interactions, bilingual UI and daily date logic |
+| **`prayer-data.js`** | **Existing traditional prayers and 31 rotating daily themes** (Vietnamese + English) |
+| **`special-intentions.json`** | **Exact dates that have a special prayer**; map `"YYYY-MM-DD"` to a prayer key in `prayer-data.js` |
+| **`mass-schedule.json`** | **Existing regular weekly Mass timetable**, with weekday number 0 = Sunday, times as minutes after midnight (e.g., 420 = 07:00), source and last-check date |
+| **`mass-date-overrides.json`** | **Confirmed date-specific schedules** only. Example below |
+| `update_mass_schedule.py` | Checked retrieval of the official parish's *published regular weekly timetable* |
+| `.github/workflows/check-mass-schedule.yml` | Twice-daily schedule check and GitHub Pages publishing (07:17 and 19:17 Vietnam time) |
+| `legacy.html` | Preserved previous animated church for reference |
+| `tests/smoke.mjs` | Desktop/mobile browser checks |
 
-Double-click `index.html`. The church experience works, but the web browser will show the **offline schedule notice** because automatic updates rely on hosting and the GitHub workflow. For realistic local testing, open a terminal in the extracted folder and run `python3 -m http.server 8000`, then visit `http://localhost:8000`.
+Example confirmed exception to paste into `mass-date-overrides.json` **only after verifying with the parish**:
 
-## Testing the parser
+```json
+{
+  "2026-12-25": {
+    "confirmed": true,
+    "times": [420, 1020],
+    "source": "https://example.com/verified-parish-notice"
+  }
+}
+```
 
-`python3 -m pip install requests beautifulsoup4`
+**Important:** The above Christmas times are strictly an *illustrative JSON example*, not actual or confirmed Kim Hải times. Leave the file as `{}` unless you have verified a specific day's times.
 
-`python3 -m unittest discover -s tests -v`
+## Schedule honesty and automatic updating
 
-`python3 update_mass_schedule.py` — contacts the official parish page and updates the JSON only if parsing and validation succeed. The current packaged JSON contains the last verified *published* recurring schedule, but no automatic check has yet run.
+- The website *does not* treat a published recurring weekly timetable as confirmation of a particular date. It explicitly says "**No confirmed schedule for this date**" and then displays regular weekly times for reference.
+- On verified date override entries, the noticeboard can label a date **confirmed**.
+- The source page can omit holidays, funerals, or last-minute changes. It is a weekly listing, not a guaranteed day-by-day calendar.
+- If the diocesan source cannot be parsed, the schedule updater retains the previous file; the website flags a stale source check after 72 hours. Check GitHub Actions runs for failures.
+- The workflow publishes `index.html`, `style.css`, `app.js`, `prayer-data.js`, `mass-schedule.json`, `mass-date-overrides.json`, and `special-intentions.json` to GitHub Pages.
+- Do not change the Mass times without a verified parish source.
 
-## Audio
+## Privacy and accessibility
 
-The Diocese of Bà Rịa has an official channel and livestream page, linked in the site. A stream may be unavailable or start at a different hour from Kim Hải Mass. No automatic sound starts without a user tap, because browsers restrict autoplay.
+The website needs no account or database. Language, rosary position, candle status, and optional intention text are stored locally under `kh2_*` keys in `localStorage`. Clearing browser data erases them. Other devices do not see these values. No submitted intention is saved to GitHub.
 
-## Notes on hosting
+The bottom destinations and fallback work with keyboard and touch. Supported features include a reduced-motion preference, labeled dialog and buttons, a plain-text reading area, and a choice to disable sound.
 
-The deployment workflow must be stored on `main`, and Pages **Source** must be **GitHub Actions**, not a branch. This directly publishes `index.html` and `mass-schedule.json` whenever you push a change or a scheduled source check succeeds. GitHub may delay or disable scheduled workflows; the site highlights overdue checks.
+## Local preview and testing
 
-On a Mac, press `Command + Shift + .` in Finder to show the hidden `.github` folder, or create the workflow directly on GitHub using its full filename.
+Run a basic static server in the repository directory:
+
+```sh
+python3 -m http.server 8787
+```
+
+Visit `http://localhost:8787`. The illustrator fallback works without WebGL; the 3D library requires a network connection the first time.
+
+Browser smoke tests run automatically on GitHub Actions and cover the gate-to-altar journey, daily prayers, mobile width, candles, rosary, Mass noticeboard and an Asia/Dubai visitor receiving the correct Vietnam-day prayer. Full 3D rendering is conditional on WebGL availability.
+
+## Parish information
+
+Official published parish listing:
+https://www.giaophanbaria.org/gioi-thieu/cac-giao-hat/giao-hat-long-huong/2012/12/05/giao-xu-kim-hai.html
+
+This is not an official Mass broadcast or sacramental Mass. A virtual prayer does not replace attending Mass in person.
