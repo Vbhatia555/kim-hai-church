@@ -59,9 +59,9 @@ function setPlace(place){if(!PLACES[place])return;currentPlace=place;renderHeadi
 function openPanel(place){
  if(!['altar','candle','garden','board'].includes(place))return;
  stopSpeech();lastFocus=document.activeElement;currentPanel=place;renderPanel(place);
- $('scrim').hidden=false;$('sheet').classList.add('is-open');$('sheet').setAttribute('aria-hidden','false');$('sheetClose').focus();$('placesMenu').hidden=true;$('placesBtn').setAttribute('aria-expanded','false');
+ $('scrim').hidden=false;$('app').classList.add('has-sheet');$('sheet').classList.add('is-open');$('sheet').setAttribute('aria-hidden','false');$('sheetClose').focus();$('placesMenu').hidden=true;$('placesBtn').setAttribute('aria-expanded','false');
 }
-function closePanel(){currentPanel=null;stopSpeech();$('sheet').classList.remove('is-open');$('sheet').setAttribute('aria-hidden','true');$('scrim').hidden=true;lastFocus?.focus?.()}
+function closePanel(){currentPanel=null;stopSpeech();$('sheet').classList.remove('is-open');$('app').classList.remove('has-sheet');$('sheet').setAttribute('aria-hidden','true');$('scrim').hidden=true;lastFocus?.focus?.()}
 function el(tag,html='',cls=''){const x=document.createElement(tag);x.className=cls;x.innerHTML=html;return x}
 function renderPanel(place){
  $('sheetEyebrow').textContent=place==='altar'?'✝ · '+tr('today'):place==='candle'?'🕯 · '+tr('candle'):place==='garden'?'✿ · '+tr('garden'):'▤ · '+tr('notice');
