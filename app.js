@@ -12,7 +12,7 @@ let lang=STORE.get('lang','vi')==='en'?'en':'vi', soundOn=false, soundContext=nu
 let schedule=null, dateOverrides={}, datedIntents={'2026-11-16':'workToday','2026-11-17':'memorialCatTien'}, candleState=STORE.get('candles',[false,false,false,false,false]), rosaryStep=Math.max(0,Math.min(11,Number(STORE.get('rosary',0))||0));
 let prayerCacheKey='', lastVNDate='', toastTimeout=0, lastFocus=null;
 const PLACES={gate:{x:0,z:17,head:'headGate',hint:'hintGate'},door:{x:0,z:-6.4,head:'headDoor',hint:'hintDoor'},altar:{x:0,z:-17.4,head:'headAltar',hint:'hintAltar'},candle:{x:-3.1,z:-14.7,head:'headCandle',hint:'hintCandle'},garden:{x:9,z:-3.5,head:'headGarden',hint:'hintGarden'},board:{x:-8,z:4.2,head:'headBoard',hint:'hintBoard'}};
-const pos={x:0,z:17}, goal={x:0,z:17,place:'gate'}, fallbackPos={gate:[50,91],door:[50,43],altar:[50,30],candle:[50,80],garden:[79,67],board:[21,67]};
+const pos={x:0,z:17}, goal={x:0,z:17,place:'gate'}, fallbackPos={gate:[50,91],door:[50,43],altar:[50,76],candle:[50,80],garden:[79,67],board:[21,67]};
 const dayNameVi=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];
 const dayNameEn=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 function tr(k){return COPY[lang][k] || k}
@@ -131,6 +131,7 @@ function navigate(place){if(!PLACES[place])return;closePlaces();if(currentPanel)
 }
 function closePlaces(){$('placesMenu').hidden=true;$('placesBtn').setAttribute('aria-expanded','false')}
 function paintFallback(place){
+ $('fallbackInterior').style.display=place==='altar'?'':'none';
  const el=$('fallbackPeople'),coords=fallbackPos[place]||fallbackPos.gate;el.setAttribute('transform','translate('+coords[0]*9+' '+coords[1]*9.2+')');
 }
 function makeMarkers(){const holder=$('sceneMarkers');const points=['door','altar','candle','garden','board'];points.forEach(id=>{const b=el('button','','scene-marker');b.type='button';b.dataset.marker=id;b.dataset.go=id;b.textContent=(id==='altar'?'✝ ':id==='candle'?'🕯 ':id==='garden'?'✿ ':id==='board'?'▤ ':'⌂ ')+tr(id);b.onclick=()=>navigate(id);holder.append(b)});updateMarkers()}
