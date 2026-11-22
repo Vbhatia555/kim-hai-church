@@ -50,7 +50,7 @@ function renderScheduleChip(){
  $('entranceMassNotice').textContent=m.confirmed?tr('confirmed'):tr('noConfirmed');
 }
 async function loadSchedules(){
- try{const [s,o,i]=await Promise.all([fetch('mass-schedule.json?ts='+Date.now()/1800000|0,{cache:'no-store'}).then(x=>{if(!x.ok)throw Error('schedule');return x.json()}),fetch('mass-date-overrides.json',{cache:'no-store'}).then(x=>x.ok?x.json():{}),fetch('special-intentions.json',{cache:'no-store'}).then(x=>x.ok?x.json():{})]);if(s.weekly&&s.timezone==='Asia/Ho_Chi_Minh')schedule=s;
+ try{const [s,o,i]=await Promise.all([fetch('mass-schedule.json?ts='+Math.floor(Date.now()/1800000),{cache:'no-store'}).then(x=>{if(!x.ok)throw Error('schedule');return x.json()}),fetch('mass-date-overrides.json',{cache:'no-store'}).then(x=>x.ok?x.json():{}),fetch('special-intentions.json',{cache:'no-store'}).then(x=>x.ok?x.json():{})]);if(s.weekly&&s.timezone==='Asia/Ho_Chi_Minh')schedule=s;
  if(o&&typeof o==='object')dateOverrides=o;
  if(i&&typeof i==='object')datedIntents={...datedIntents,...i};
  }catch(e){console.warn('Schedule unavailable; not inventing Mass times.',e)}renderScheduleChip();if(currentPanel==='board')renderPanel('board');
@@ -83,6 +83,7 @@ function renderPrayer(area){
  ['together','ourfather','hailmary','glory','communion','memorialCatTien','workToday'].forEach(k=>{const q=DATA.prayers[k]?.[lang];if(!q)return;const b=el('button','', 'button-quiet');b.type='button';b.style.margin='5px';b.style.padding='9px 12px';b.textContent=q.title;b.onclick=()=>{paper.textContent=q.body;title.textContent=q.title;listen.onclick=()=>speak(q.body)};other.append(b)});area.append(other);
 }
 function renderCandles(area){
+ area.replaceChildren();
  const intro=el('p');intro.textContent=tr('candleIntro');area.append(intro);
  const rack=el('div','','candles');rack.setAttribute('role','group');rack.setAttribute('aria-label',tr('candle'));
  for(let i=0;i<5;i++){const b=el('button','','candle-unit'+(candleState[i]?' lit':''));b.type='button';b.setAttribute('aria-label',(candleState[i]?tr('lit'):tr('unlit'))+' '+(i+1));b.innerHTML='<span class="wax"><span class="flame"></span></span><span>'+(i+1)+'</span>';b.onclick=()=>{if(!candleState[i]){candleState[i]=true;STORE.set('candles',candleState);renderCandles(area);chime(550);toast(tr('lit'))}};rack.append(b)}area.append(rack);
@@ -97,6 +98,7 @@ function rosaryPrayer(){
  return DATA.prayers[key]?.[lang] || {title:tr(key),body:'Amen.'};
 }
 function renderRosary(area){
+ area.replaceChildren();
  const intro=el('p');intro.textContent=tr('rosaryIntro');area.append(intro);
  const wrap=el('div','','rosary-beads');for(let i=0;i<12;i++){const b=el('button',String(i===0?'✝':i===11?'✣':i),'bead'+(i<rosaryStep?' done':'')+(i===rosaryStep?' active':''));b.type='button';b.setAttribute('aria-label',tr('rosaryStep')+' '+(i+1));b.setAttribute('aria-current',String(i===rosaryStep));b.onclick=()=>{rosaryStep=i;STORE.set('rosary',rosaryStep);renderRosary(area)};wrap.append(b)}area.append(wrap);
  const q=rosaryPrayer(),label=el('p','','subtle');label.textContent=(rosaryStep+1)+'/12 · '+q.title;area.append(label);
